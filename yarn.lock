@@ -1094,6 +1094,7 @@ __metadata:
     ts-jest: "npm:^29.4.1"
     ts-node: "npm:^10.9.2"
     tsc-alias: "npm:^1.8.16"
+    tsconfig-paths: "npm:^4.2.0"
     twilio: "npm:^5.8.2"
     typescript: "npm:~5.9.2"
     typescript-eslint: "npm:^8.41.0"
@@ -3390,7 +3391,6 @@ __metadata:
     "@types/node": "npm:^24.3.0"
     npm-check-updates: "npm:^18.0.3"
     prettier: "npm:^3.6.2"
-    tsconfig-paths: "npm:^4.2.0"
   languageName: unknown
   linkType: soft
 
