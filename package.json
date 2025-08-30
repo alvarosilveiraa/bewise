@@ -1,0 +1,32 @@
+{
+  "name": "bewise",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "api:dev": "yarn workspace @bewise/api dev",
+    "api:build": "yarn workspace @bewise/api build",
+    "api:start": "yarn workspace @bewise/api start",
+    "web:dev": "yarn workspace @bewise/web dev",
+    "web:build": "yarn workspace @bewise/web build",
+    "web:start": "yarn workspace @bewise/web start",
+    "pretty": "prettier --write .",
+    "test": "yarn workspaces foreach --all run test",
+    "lint": "yarn workspaces foreach --all run lint",
+    "typecheck": "yarn workspaces foreach --all run typecheck",
+    "checkup": "yarn && yarn pretty && yarn test && yarn lint && yarn typecheck"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^24.3.0",
+    "npm-check-updates": "^18.0.3",
+    "prettier": "^3.6.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "~5.9.2"
+  },
+  "packageManager": "yarn@4.9.4"
+}

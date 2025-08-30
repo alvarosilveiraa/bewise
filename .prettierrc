@@ -1,0 +1,14 @@
+{
+  "tabWidth": 2,
+  "arrowParens": "avoid",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^react$",
+    "^next$",
+    "^(?!^react$|^next$|^../.*$|^./.*$)",
+    "^../(.*)$",
+    "^./(.*)$"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
+}
