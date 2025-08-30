@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "paths": {
-      "@bewise/common/*": ["./src/*"]
+      "@bewise/database/*": ["./src/*"]
     }
   },
   "exclude": ["node_modules"],

@@ -12,6 +12,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.879.0",
     "@bewise/common": "*",
+    "@bewise/database": "*",
     "@socket.io/redis-adapter": "^8.3.0",
     "cloudflare": "^4.5.0",
     "cookie-parser": "^1.4.7",
@@ -24,6 +25,7 @@
     "express-rate-limit": "^8.0.1",
     "ioredis": "^5.7.0",
     "jsonwebtoken": "^9.0.2",
+    "kysely": "^0.28.5",
     "lodash": "^4.17.21",
     "mime-types": "^3.0.1",
     "multer": "^2.0.2",

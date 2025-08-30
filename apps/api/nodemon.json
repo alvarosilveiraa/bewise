@@ -1,4 +1,4 @@
 {
-  "watch": ["src"],
+  "watch": ["../../packages/database/src", "../../packages/common/src", "src"],
   "ext": "ts"
 }
