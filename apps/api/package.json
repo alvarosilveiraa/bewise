@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "dotenv -e .env.local -- nodemon src/start.ts",
     "build": "tsc && tsc-alias",
-    "start": "dotenv -e .env.local -- node dist/apps/api/src/start",
+    "start": "node dist/apps/api/src/start",
     "test": "dotenv -e .env.local -- jest --passWithNoTests",
     "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit"
