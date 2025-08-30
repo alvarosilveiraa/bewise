@@ -1,4 +1,4 @@
 import { createServer } from "http";
-import { app } from "./app";
+import { app } from "@/app";
 
 export const server = createServer(app);

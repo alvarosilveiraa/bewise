@@ -7,11 +7,11 @@
     "build": "tsc && tsc-alias",
     "start": "node dist/start",
     "test": "dotenv -e .env.local -- jest --passWithNoTests",
-    "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.879.0",
+    "@bewise/common": "*",
     "@socket.io/redis-adapter": "^8.3.0",
     "cloudflare": "^4.5.0",
     "cookie-parser": "^1.4.7",
@@ -41,8 +41,6 @@
     "zod": "^4.1.5"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.34.0",
     "@faker-js/faker": "^10.0.0",
     "@types/adm-zip": "^0.5.7",
     "@types/autocannon": "^7.12.7",
@@ -59,11 +57,9 @@
     "@types/qs": "^6.14.0",
     "@types/uuid": "^10.0.0",
     "autocannon": "^8.0.0",
-    "eslint": "^9.34.0",
     "jest": "^30.1.1",
     "nodemon": "^3.1.10",
     "ts-jest": "^29.4.1",
-    "ts-node": "^10.9.2",
-    "typescript-eslint": "^8.41.0"
+    "ts-node": "^10.9.2"
   }
 }
