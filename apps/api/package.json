@@ -34,7 +34,9 @@
     "resend": "^6.0.2",
     "socket.io": "^4.8.1",
     "socket.io-adapter": "^2.5.5",
+    "tsc-alias": "^1.8.16",
     "twilio": "^5.8.2",
+    "typescript": "~5.9.2",
     "zod": "^4.1.5"
   },
   "devDependencies": {
@@ -61,8 +63,6 @@
     "nodemon": "^3.1.10",
     "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
-    "tsc-alias": "^1.8.16",
-    "typescript": "~5.9.2",
     "typescript-eslint": "^8.41.0"
   }
 }

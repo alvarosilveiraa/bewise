@@ -25,8 +25,7 @@
     "@types/node": "^24.3.0",
     "npm-check-updates": "^18.0.3",
     "prettier": "^3.6.2",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "~5.9.2"
+    "tsconfig-paths": "^4.2.0"
   },
   "packageManager": "yarn@4.9.4"
 }

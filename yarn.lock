@@ -3391,7 +3391,6 @@ __metadata:
     npm-check-updates: "npm:^18.0.3"
     prettier: "npm:^3.6.2"
     tsconfig-paths: "npm:^4.2.0"
-    typescript: "npm:~5.9.2"
   languageName: unknown
   linkType: soft
 
