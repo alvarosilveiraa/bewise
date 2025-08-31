@@ -22,5 +22,10 @@
     "require": ["tsconfig-paths/register"]
   },
   "exclude": ["node_modules"],
-  "include": ["../../packages/common/src", "../../packages/database/src", "src"]
+  "include": [
+    "../../packages/common/src",
+    "../../packages/database/migrations",
+    "../../packages/database/src",
+    "src"
+  ]
 }
