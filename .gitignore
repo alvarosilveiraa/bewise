@@ -16,7 +16,3 @@ dist
 android
 ios
 .env
-.env.local
-.env.production
-apps/api/k8s/overlays/*/configmap.yaml
-apps/api/k8s/overlays/*/secret.yaml

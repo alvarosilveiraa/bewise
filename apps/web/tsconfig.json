@@ -1,20 +1,24 @@
 {
   "compilerOptions": {
+    "module": "ESNext",
     "target": "ESNext",
-    "module": "CommonJS",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "allowJs": true,
     "strict": true,
-    "moduleResolution": "node",
+    "noEmit": true,
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
     "paths": {
-      "@bewise/common/*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": [".next/types/**/*.ts", "next-env.d.ts", "src"],
   "exclude": ["node_modules"]
 }

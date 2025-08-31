@@ -1,14 +1,14 @@
 import { app } from "@/app";
 import { exceptionMiddleware } from "@/middlewares/exception";
 import { migrationsRoutes } from "@/routes/migrations";
-import { rootRoutes } from "@/routes/root";
 import { storageRoutes } from "@/routes/storage";
 import { userRoutes } from "@/routes/user";
+import { usersRoutes } from "@/routes/users";
 
 export const setupRoutes = () => {
-  rootRoutes();
   migrationsRoutes();
   storageRoutes();
   userRoutes();
+  usersRoutes();
   app.use(exceptionMiddleware);
 };

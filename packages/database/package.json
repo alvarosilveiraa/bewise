@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "generate": "ts-node scripts/generate.ts",
-    "migrate": "dotenv -e ../../apps/api/.env.local -- ts-node scripts/migrate.ts",
-    "revert": "dotenv -e ../../apps/api/.env.local -- ts-node scripts/revert.ts",
+    "migrate": "dotenv -e ../../apps/api/.env -- ts-node scripts/migrate.ts",
+    "revert": "dotenv -e ../../apps/api/.env -- ts-node scripts/revert.ts",
     "test": "jest --passWithNoTests",
     "typecheck": "tsc --noEmit"
   },

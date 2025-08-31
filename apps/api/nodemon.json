@@ -1,4 +1,9 @@
 {
-  "watch": ["../../packages/database/src", "../../packages/common/src", "src"],
+  "watch": [
+    "../../packages/common/src",
+    "../../packages/database/migrations",
+    "../../packages/database/src",
+    "src"
+  ],
   "ext": "ts"
 }
