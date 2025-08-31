@@ -9,6 +9,9 @@
   ],
   "scripts": {
     "upgrade": "npx ncu -x expo -x react -x react-dom -x react-native --deep -u && yarn install",
+    "db:generate": "yarn workspace @bewise/database generate",
+    "db:migrate": "yarn workspace @bewise/database migrate",
+    "db:revert": "yarn workspace @bewise/database revert",
     "api:dev": "yarn workspace @bewise/api dev",
     "api:build": "yarn workspace @bewise/api build",
     "api:start": "yarn workspace @bewise/api start",

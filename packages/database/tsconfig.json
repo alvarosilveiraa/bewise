@@ -15,6 +15,9 @@
       "@bewise/database/*": ["./src/*"]
     }
   },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
   "exclude": ["node_modules"],
-  "include": ["src"]
+  "include": ["migrations", "scripts", "src"]
 }

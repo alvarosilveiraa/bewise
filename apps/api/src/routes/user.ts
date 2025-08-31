@@ -4,8 +4,8 @@ import { notFoundException } from "@/exceptions/notFound";
 
 export const userRoutes = () => {
   app.get("/user", async (_, res) => {
-    const user = await db.selectFrom("user").selectAll().executeTakeFirst();
-    if (!user) throw notFoundException;
-    res.json(user);
+    const person = await db.selectFrom("person").selectAll().executeTakeFirst();
+    if (!person) throw notFoundException;
+    res.json(person);
   });
 };
