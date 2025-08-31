@@ -10,4 +10,7 @@ export const migrator = new Migrator({
     path,
     migrationFolder: path.join(__dirname, "../migrations"),
   }),
+  migrationTableSchema: "kysely",
+  migrationTableName: "migration",
+  migrationLockTableName: "migration_lock",
 });
