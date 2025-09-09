@@ -1,7 +1,24 @@
 import type { NextConfig } from "next";
+import path from "path";
 
-export default {
+const config: NextConfig = {
+  turbopack: {
+    root: path.join(__dirname, "../.."),
+    resolveExtensions: [
+      ".web.tsx",
+      ".web.ts",
+      ".web.jsx",
+      ".web.js",
+      ".tsx",
+      ".ts",
+      ".jsx",
+      ".js",
+    ],
+  },
+  transpilePackages: ["@bewise/common", "@bewise/ui"],
   eslint: {
     ignoreDuringBuilds: true,
   },
-} as NextConfig;
+};
+
+export default config;

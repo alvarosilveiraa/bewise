@@ -10,6 +10,12 @@ export default tseslint.config(
       "**/*/jest.config.js",
       "apps/web/.next",
       "apps/web/next-env.d.ts",
+      "apps/mobile/.expo",
+      "apps/mobile/android",
+      "apps/mobile/ios",
+      "apps/mobile/app.config.js",
+      "apps/mobile/babel.config.js",
+      "apps/mobile/metro.config.js",
     ],
   },
 );

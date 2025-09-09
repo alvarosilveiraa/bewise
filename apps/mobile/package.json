@@ -1,0 +1,56 @@
+{
+  "name": "@bewise/mobile",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "expo start",
+    "update": "dotenv -e .env -- eas update",
+    "android": "rm -rf android && expo run:android",
+    "ios": "rm -rf ios && expo run:ios",
+    "build:android": "dotenv -e .env -- eas build --platform android --profile",
+    "build:ios": "dotenv -e .env -- eas build --platform ios --profile",
+    "submit:android": "dotenv -e .env -- eas submit -p android",
+    "submit:ios": "dotenv -e .env -- eas submit -p ios",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@bewise/common": "*",
+    "@bewise/ui": "*",
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "expo": "53.0.22",
+    "expo-constants": "^17.1.7",
+    "expo-dev-client": "~5.2.4",
+    "expo-linking": "^7.1.7",
+    "expo-router": "~5.1.6",
+    "expo-system-ui": "~5.0.11",
+    "expo-updates": "~0.28.17",
+    "react": "19.0.0",
+    "react-native": "0.79.5",
+    "react-native-edge-to-edge": "1.6.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@types/node": "^24.3.1",
+    "@types/react": "~19.0.10",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "dotenv-cli": "^10.0.0",
+    "jest": "~29.7.0",
+    "ts-jest": "^29.4.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "~5.8.3"
+  },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "listUnknownPackages": false
+      }
+    }
+  }
+}

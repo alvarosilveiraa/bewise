@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "upgrade": "npx ncu -x expo -x react -x react-dom -x next -x react-native --deep -u && yarn install",
+    "upgrade": "npx ncu -x expo -x next -x react -x react-dom -x react-native -x typescript -x jest --deep -u && yarn install",
     "db:generate": "yarn workspace @bewise/database generate",
     "db:migrate": "yarn workspace @bewise/database migrate",
     "db:revert": "yarn workspace @bewise/database revert",
@@ -18,6 +18,9 @@
     "web:dev": "yarn workspace @bewise/web dev",
     "web:build": "yarn workspace @bewise/web build",
     "web:start": "yarn workspace @bewise/web start",
+    "mobile:dev": "yarn workspace @bewise/mobile dev",
+    "mobile:android": "yarn workspace @bewise/mobile android",
+    "mobile:ios": "yarn workspace @bewise/mobile ios",
     "pretty": "prettier --write .",
     "lint": "eslint . --fix",
     "test": "yarn workspaces foreach --all run test",
@@ -26,13 +29,13 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.34.0",
+    "@eslint/js": "^9.35.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^24.3.1",
-    "eslint": "^9.34.0",
+    "eslint": "^9.35.0",
     "npm-check-updates": "^18.0.3",
     "prettier": "^3.6.2",
-    "typescript": "~5.9.2",
+    "typescript": "~5.8.3",
     "typescript-eslint": "^8.42.0"
   },
   "packageManager": "yarn@4.9.4"

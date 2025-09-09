@@ -2,6 +2,6 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   moduleNameMapper: {
-    "^@bewise/common/(.*)$": "<rootDir>src/$1",
+    "^@bewise/database/(.*)$": "<rootDir>src/$1",
   },
 };
