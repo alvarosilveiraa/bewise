@@ -1,10 +1,12 @@
+import { fontWeightMapper } from "../mappers/fontWeight";
+
 export const TEXT_STYLE_MAP = {
   color: "color",
   fontFamily: "fontFamily",
   fontSize: "fontSize",
   fontStyle: "fontStyle",
   fontVariant: "fontVariant",
-  fontWeight: "fontWeight",
+  fontWeight: fontWeightMapper,
   letterSpacing: "letterSpacing",
   lineHeight: "lineHeight",
   textAlign: "textAlign",

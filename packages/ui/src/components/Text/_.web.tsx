@@ -1,10 +1,11 @@
-import { useMemo } from "react";
+"use client";
+
+import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
-import { styleMapper } from "@bewise/ui/mappers/style";
 import { TextProps } from "./Props";
 
 export const _Text = ({ id, as, children, ...props }: TextProps) => {
-  const style = useMemo(() => styleMapper(props), [props]);
+  const style = useStyle(props);
   const transition = useTransition(style);
 
   return {

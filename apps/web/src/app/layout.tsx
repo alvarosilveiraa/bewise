@@ -4,6 +4,7 @@ import { ThemeModeEnum } from "@bewise/common/enums/ThemeMode";
 import { StorageProvider } from "@bewise/ui/providers/Storage";
 import { ThemeProvider } from "@bewise/ui/providers/Theme";
 import { cookies } from "next/headers";
+import "../fonts";
 import "./global.css";
 import { cookieStorage, localStorage, sessionStorage } from "@/storage";
 

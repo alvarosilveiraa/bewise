@@ -1,22 +1,27 @@
 import { useMemo } from "react";
+import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
-import { styleMapper } from "@bewise/ui/mappers/style";
 import { Text } from "react-native";
 import Animated from "react-native-reanimated";
 import { TextProps } from "./Props";
 
 export const _Text = ({ id, children, ...props }: TextProps) => {
-  const style = useMemo(() => styleMapper(props), [props]);
+  const style = useStyle(props);
   const transition = useTransition(style);
+  const fontFamily = useMemo(
+    () =>
+      `${style.fontFamily}_${props.fontWeight}${style.fontStyle === "italic" ? "_Italic" : ""}`,
+    [style.fontFamily, props.fontWeight, style.fontStyle],
+  );
 
   if (!style.transition)
     return (
-      <Text id={id} style={style}>
+      <Text id={id} style={{ ...style, fontFamily }}>
         {children}
       </Text>
     );
   return (
-    <Animated.Text id={id} style={[style, transition]}>
+    <Animated.Text id={id} style={[{ ...style, fontFamily }, transition]}>
       {children}
     </Animated.Text>
   );

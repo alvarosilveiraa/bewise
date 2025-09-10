@@ -1,4 +1,6 @@
-import { useMemo } from "react";
+"use client";
+
+import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
 import { BoxProps } from "./Props";
@@ -10,7 +12,7 @@ export const _Box = ({
   children,
   ...props
 }: BoxProps) => {
-  const style = useMemo(() => boxStyleMapper(props), [props]);
+  const style = useStyle(props, boxStyleMapper);
   const transition = useTransition(style);
 
   return (

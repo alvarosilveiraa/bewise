@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { useCallback } from "react";
+import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
 import { TouchableWithoutFeedback, View } from "react-native";
@@ -12,31 +13,42 @@ export const _Box = ({
   children,
   ...props
 }: BoxProps) => {
-  const style = useMemo(() => boxStyleMapper(props), [props]);
+  const style = useStyle(props, boxStyleMapper);
   const transition = useTransition(style);
 
   if (!style.transition) {
+    const renderChildren = useCallback(
+      (id?: string) => (
+        <View id={id} style={style}>
+          {children}
+        </View>
+      ),
+      [children, style],
+    );
+
     if (onPress)
       return (
         <TouchableWithoutFeedback id={id} onPress={onPress} disabled={disabled}>
-          <View style={style}>{children}</View>
+          {renderChildren()}
         </TouchableWithoutFeedback>
       );
-    return (
-      <View id={id} style={style}>
-        {children}
-      </View>
-    );
+    return renderChildren(id);
   }
+
+  const renderAnimatedChildren = useCallback(
+    (id?: string) => (
+      <Animated.View id={id} style={[style, transition]}>
+        {children}
+      </Animated.View>
+    ),
+    [children, style, transition],
+  );
+
   if (onPress)
     return (
       <TouchableWithoutFeedback id={id} onPress={onPress} disabled={disabled}>
-        <Animated.View style={[style, transition]}>{children}</Animated.View>
+        {renderAnimatedChildren()}
       </TouchableWithoutFeedback>
     );
-  return (
-    <Animated.View id={id} style={[style, transition]}>
-      {children}
-    </Animated.View>
-  );
+  return renderAnimatedChildren(id);
 };

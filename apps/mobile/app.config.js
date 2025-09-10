@@ -39,6 +39,7 @@ export default {
     assetBundlePatterns: ["**/*"],
     userInterfaceStyle: "automatic",
     plugins: [
+      "expo-font",
       [
         "expo-router",
         {

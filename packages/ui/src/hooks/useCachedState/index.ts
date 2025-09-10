@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useStorageContext } from "@bewise/ui/providers/Storage/useStorageContext";
+import { useStorageContext } from "@bewise/ui/providers/Storage/useContext";
 import { addMilliseconds } from "date-fns";
 import { UseCachedStateSettings } from "./Props";
 

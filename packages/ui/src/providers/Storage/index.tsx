@@ -1,7 +1,7 @@
 "use client";
 
 import { StorageProviderProps } from "./Props";
-import { StorageContext } from "./StorageContext";
+import { _StorageContext } from "./_Context";
 
 export const StorageProvider = ({
   localStorage,
@@ -9,9 +9,9 @@ export const StorageProvider = ({
   cookieStorage = localStorage,
   children,
 }: StorageProviderProps) => (
-  <StorageContext.Provider
+  <_StorageContext.Provider
     value={{ localStorage, sessionStorage, cookieStorage }}
   >
     {children}
-  </StorageContext.Provider>
+  </_StorageContext.Provider>
 );

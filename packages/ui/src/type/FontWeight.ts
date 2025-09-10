@@ -1,7 +1,11 @@
 export type FontWeight =
-  | "normal"
-  | "bold"
-  | "100"
+  | "$h1"
+  | "$h2"
+  | "$h3"
+  | "$h4"
+  | "$h5"
+  | "$p"
+  | "$span"
   | "200"
   | "300"
   | "400"
@@ -9,23 +13,4 @@ export type FontWeight =
   | "600"
   | "700"
   | "800"
-  | "900"
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900
-  | "ultralight"
-  | "thin"
-  | "light"
-  | "medium"
-  | "regular"
-  | "semibold"
-  | "condensedBold"
-  | "condensed"
-  | "heavy"
-  | "black";
+  | "900";

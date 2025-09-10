@@ -22,6 +22,7 @@ export const BOX_STYLE_MAP = {
   brc: "borderRightColor",
   brRadius: "borderBottomRightRadius",
   brw: "borderRightWidth",
+  bs: "borderStyle",
   bsc: "borderStartColor",
   bsRadius: "borderBottomStartRadius",
   bsw: "borderStartWidth",

@@ -1,4 +1,8 @@
 import { ReactNode } from "react";
+import { Color } from "@bewise/ui/type/Color";
+import { ColorVariable } from "@bewise/ui/type/ColorVariable";
+import { FontFamily } from "@bewise/ui/type/FontFamily";
+import { FontSize } from "@bewise/ui/type/FontSize";
 import { FontStyle } from "@bewise/ui/type/FontStyle";
 import { FontVariant } from "@bewise/ui/type/FontVariant";
 import { FontWeight } from "@bewise/ui/type/FontWeight";
@@ -10,19 +14,19 @@ import { WritingDirection } from "@bewise/ui/type/WritingDirection";
 import { BoxStyle } from "../Box/Props";
 
 export type TextStyle = {
-  color?: string;
-  fontFamily?: string;
-  fontSize?: number;
+  color?: ColorVariable | Color;
+  fontFamily?: FontFamily;
+  fontSize?: FontSize;
   fontStyle?: FontStyle;
   fontVariant?: FontVariant;
   fontWeight?: FontWeight;
   letterSpacing?: number;
   lineHeight?: number;
   textAlign?: TextAlign;
-  textDecorationColor?: string;
+  textDecorationColor?: ColorVariable | Color;
   textDecorationLine?: TextDecorationLine;
   textDecorationStyle?: TextDecorationStyle;
-  textShadowColor?: string;
+  textShadowColor?: ColorVariable | Color;
   textShadowOffset?: { width: number; height: number };
   textShadowRadius?: number;
   textTransform?: TextTransform;

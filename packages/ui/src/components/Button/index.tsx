@@ -12,18 +12,19 @@ export const Button = (props: ButtonProps) => (
     justify="center"
     gap={6}
     fontSize={14}
-    color="black"
+    color="$primary.f"
     px={12}
     py={8}
-    bg="#f4f4f4"
+    bg="$primary"
     bw={1}
-    bc="#cccccc"
+    bc="$divider"
+    bs="solid"
     radius={4}
     opacity={props.disabled ? 0.8 : undefined}
+    transition={{ duration: 200 }}
     {...props}
     hover={{
       opacity: 0.8,
-      transform: [{ scale: 1.08 }],
       ...props.hover,
     }}
   />

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { TEXT_STYLE_PROPS } from "@bewise/ui/constants/TEXT_STYLE_PROPS";
 import { pick } from "lodash";
 import { Pressable } from "react-native";
@@ -17,21 +17,27 @@ export const _Button = ({
 }: ButtonProps) => {
   const textStyleProps = useMemo(() => pick(props, TEXT_STYLE_PROPS), [props]);
 
+  const renderChildren = useCallback(
+    (id?: string) => (
+      <Box id={id} {...props}>
+        {startContent}
+        <Text
+          flex={props.w && props.w !== "auto" ? 1 : undefined}
+          {...textStyleProps}
+        >
+          {children}
+        </Text>
+        {endContent}
+      </Box>
+    ),
+    [startContent, endContent, children, props, textStyleProps],
+  );
+
   if (onPress)
     return (
       <Pressable id={id} onPress={onPress} disabled={disabled}>
-        <Box {...props}>
-          {startContent}
-          <Text {...textStyleProps}>{children}</Text>
-          {endContent}
-        </Box>
+        {renderChildren()}
       </Pressable>
     );
-  return (
-    <Box id={id} {...props}>
-      {startContent}
-      <Text {...textStyleProps}>{children}</Text>
-      {endContent}
-    </Box>
-  );
+  return renderChildren(id);
 };

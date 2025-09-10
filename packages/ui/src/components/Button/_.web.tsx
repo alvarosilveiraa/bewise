@@ -1,5 +1,8 @@
+"use client";
+
 import { useMemo, useState } from "react";
 import { TEXT_STYLE_PROPS } from "@bewise/ui/constants/TEXT_STYLE_PROPS";
+import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
 import { pick } from "lodash";
@@ -17,16 +20,12 @@ export const _Button = ({
   ...props
 }: ButtonProps) => {
   const [hovering, setHovering] = useState(false);
-  const hoverStyle = useMemo(
-    () => (hover && !disabled && hovering ? boxStyleMapper(hover) : {}),
-    [hover, disabled, hovering],
-  );
-  const style = useMemo(
-    () => ({
-      ...boxStyleMapper({ transition: { duration: 200 }, ...props }),
-      ...hoverStyle,
-    }),
-    [props, hoverStyle],
+  const style = useStyle(
+    {
+      ...props,
+      ...(hover && !disabled && hovering ? hover : {}),
+    },
+    boxStyleMapper,
   );
   const transition = useTransition(style);
   const hoverTextStyleProps = useMemo(
@@ -48,7 +47,7 @@ export const _Button = ({
       disabled={disabled}
     >
       {startContent}
-      <Text as="span" transition={{ duration: 200 }} {...textStyleProps}>
+      <Text as="span" flex={1} {...textStyleProps}>
         {children}
       </Text>
       {endContent}

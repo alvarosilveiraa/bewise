@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "@bewise/common": "*",
+    "chroma-js": "^3.1.2",
     "react": "19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",
+    "@types/chroma-js": "^3",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.20",
     "@types/node": "^24.3.1",
