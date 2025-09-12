@@ -1,6 +1,6 @@
 import { isNumber } from "lodash";
 
 export const paddingHorizontalMapper = (paddingHorizontal?: unknown) => {
-  if (!paddingHorizontal || !isNumber(paddingHorizontal)) return;
+  if (!isNumber(paddingHorizontal)) return;
   return { paddingLeft: paddingHorizontal, paddingRight: paddingHorizontal };
 };

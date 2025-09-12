@@ -4,31 +4,32 @@ import { paddingHorizontalMapper } from "@bewise/ui/mappers/paddingHorizontal";
 import { paddingVerticalMapper } from "@bewise/ui/mappers/paddingVertical";
 import { shadowMapper } from "@bewise/ui/mappers/shadow";
 import { transformMapper } from "@bewise/ui/mappers/transform";
+import { borderColorMapper } from "../mappers/borderColor";
+import { borderRadiusMapper } from "../mappers/borderRadius";
+import { borderWidthMapper } from "../mappers/borderWidth";
 import { cursorMapper } from "../mappers/cursor";
 
 export const BOX_STYLE_MAP = {
   bbc: "borderBottomColor",
+  bbs: "borderBottomStyle",
   bbw: "borderBottomWidth",
-  bc: "borderColor",
-  bec: "borderEndColor",
-  beRadius: "borderBottomEndRadius",
-  bew: "borderEndWidth",
+  bc: borderColorMapper,
   bfv: "backfaceVisibility",
   bg: "backgroundColor",
   blc: "borderLeftColor",
   blRadius: "borderBottomLeftRadius",
+  bls: "borderLeftStyle",
   blw: "borderLeftWidth",
   bottom: "bottom",
   brc: "borderRightColor",
   brRadius: "borderBottomRightRadius",
+  brs: "borderRightStyle",
   brw: "borderRightWidth",
   bs: "borderStyle",
-  bsc: "borderStartColor",
-  bsRadius: "borderBottomStartRadius",
-  bsw: "borderStartWidth",
   btc: "borderTopColor",
+  bts: "borderTopStyle",
   btw: "borderTopWidth",
-  bw: "borderWidth",
+  bw: borderWidthMapper,
   content: "alignContent",
   cursor: cursorMapper,
   dir: "direction",
@@ -66,19 +67,17 @@ export const BOX_STYLE_MAP = {
   pt: "paddingTop",
   px: paddingHorizontalMapper,
   py: paddingVerticalMapper,
-  radius: "borderRadius",
+  radius: borderRadiusMapper,
   ratio: "aspectRatio",
   right: "right",
   self: "alignSelf",
   shadow: shadowMapper,
   start: "start",
-  teRadius: "borderTopEndRadius",
   tlRadius: "borderTopLeftRadius",
   top: "top",
   transform: transformMapper,
   transition: "transition",
   trRadius: "borderTopRightRadius",
-  tsRadius: "borderTopStartRadius",
   w: "width",
   z: "zIndex",
 };

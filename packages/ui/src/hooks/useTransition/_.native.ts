@@ -9,6 +9,9 @@ import {
   AnimatableNumericValue,
   AnimatableStringValue,
   DimensionValue,
+  ImageStyle,
+  TextStyle,
+  ViewStyle,
 } from "react-native";
 import {
   Easing,
@@ -24,7 +27,7 @@ const isNumberWorklet = (value: unknown) => {
   return typeof value === "number";
 };
 
-const isStringNumberWorklet = (value: unknown) => {
+const isStringWorklet = (value: unknown) => {
   "worklet";
   return typeof value === "string" && !!value;
 };
@@ -108,6 +111,11 @@ export const _useTransition = (props: Record<string, unknown>) => {
   const bottom = useSharedValue(props.bottom);
   const width = useSharedValue(props.width);
   const height = useSharedValue(props.height);
+  const padding = useSharedValue(props.padding);
+  const paddingTop = useSharedValue(props.paddingTop);
+  const paddingLeft = useSharedValue(props.paddingLeft);
+  const paddingRight = useSharedValue(props.paddingRight);
+  const paddingBottom = useSharedValue(props.paddingBottom);
   const opacity = useSharedValue(props.opacity);
   const colorProgress = useSharedValue(1);
   const prevColor = useSharedValue(props.color);
@@ -171,6 +179,26 @@ export const _useTransition = (props: Record<string, unknown>) => {
   useEffect(() => setDimension("width", props.width, width), [props.width]);
   useEffect(() => setDimension("height", props.height, height), [props.height]);
   useEffect(
+    () => setDimension("padding", props.padding, padding),
+    [props.padding],
+  );
+  useEffect(
+    () => setDimension("paddingTop", props.paddingTop, paddingTop),
+    [props.paddingTop],
+  );
+  useEffect(
+    () => setDimension("paddingLeft", props.paddingLeft, paddingLeft),
+    [props.paddingLeft],
+  );
+  useEffect(
+    () => setDimension("paddingRight", props.paddingRight, paddingRight),
+    [props.paddingRight],
+  );
+  useEffect(
+    () => setDimension("paddingBottom", props.paddingBottom, paddingBottom),
+    [props.paddingBottom],
+  );
+  useEffect(
     () => setDimension("opacity", props.opacity, opacity),
     [props.opacity],
   );
@@ -229,80 +257,81 @@ export const _useTransition = (props: Record<string, unknown>) => {
     [transformTranslateY],
   );
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    top: isDimensionWorklet(top.value)
-      ? (top.value as DimensionValue)
-      : undefined,
-    left: isDimensionWorklet(left.value)
-      ? (left.value as DimensionValue)
-      : undefined,
-    right: isDimensionWorklet(right.value)
-      ? (right.value as DimensionValue)
-      : undefined,
-    bottom: isDimensionWorklet(bottom.value)
-      ? (bottom.value as DimensionValue)
-      : undefined,
-    width: isDimensionWorklet(width.value)
-      ? (width.value as DimensionValue)
-      : undefined,
-    height: isDimensionWorklet(height.value)
-      ? (height.value as DimensionValue)
-      : undefined,
-    opacity: isNumberWorklet(opacity.value)
-      ? (opacity.value as AnimatableNumericValue)
-      : undefined,
-    color: isStringNumberWorklet(props.color)
-      ? interpolateColor(
-          colorProgress.value,
-          [0, 1],
-          [(prevColor.value ?? props.color) as string, props.color as string],
-        )
-      : undefined,
-    backgroundColor: isStringNumberWorklet(props.backgroundColor)
-      ? interpolateColor(
-          bgProgress.value,
-          [0, 1],
-          [
-            (prevBgColor.value ?? props.backgroundColor) as string,
-            props.backgroundColor as string,
-          ],
-        )
-      : undefined,
-    transform: props.transform
-      ? [
-          isNumberWorklet(perspective.value)
-            ? { perspective: perspective.value as AnimatableNumericValue }
-            : null,
-          isStringNumberWorklet(rotate.value)
-            ? { rotate: rotate.value as AnimatableStringValue }
-            : null,
-          isStringNumberWorklet(rotateX.value)
-            ? { rotateX: rotateX.value as AnimatableStringValue }
-            : null,
-          isStringNumberWorklet(rotateY.value)
-            ? { rotateY: rotateY.value as AnimatableStringValue }
-            : null,
-          isStringNumberWorklet(rotateZ.value)
-            ? { rotateZ: rotateZ.value as AnimatableStringValue }
-            : null,
-          isNumberWorklet(scale.value)
-            ? { scale: scale.value as AnimatableNumericValue }
-            : null,
-          isNumberWorklet(scaleX.value)
-            ? { scaleX: scaleX.value as AnimatableNumericValue }
-            : null,
-          isNumberWorklet(scaleY.value)
-            ? { scaleY: scaleY.value as AnimatableNumericValue }
-            : null,
-          isNumberWorklet(translateX.value)
-            ? { translateX: translateX.value as AnimatableNumericValue }
-            : null,
-          isNumberWorklet(translateY.value)
-            ? { translateY: translateY.value as AnimatableNumericValue }
-            : null,
-        ].filter(value => !!value)
-      : undefined,
-  }));
+  const animatedStyle = useAnimatedStyle(() => {
+    const style: ViewStyle & ImageStyle & TextStyle = {};
+    if (isDimensionWorklet(top.value)) style.top = top.value as DimensionValue;
+    if (isDimensionWorklet(left.value))
+      style.left = left.value as DimensionValue;
+    if (isDimensionWorklet(right.value))
+      style.right = right.value as DimensionValue;
+    if (isDimensionWorklet(bottom.value))
+      style.bottom = bottom.value as DimensionValue;
+    if (isDimensionWorklet(width.value))
+      style.width = width.value as DimensionValue;
+    if (isDimensionWorklet(height.value))
+      style.height = height.value as DimensionValue;
+    if (isDimensionWorklet(padding.value))
+      style.padding = padding.value as DimensionValue;
+    if (isDimensionWorklet(paddingTop.value))
+      style.paddingTop = paddingTop.value as DimensionValue;
+    if (isDimensionWorklet(paddingLeft.value))
+      style.paddingLeft = paddingLeft.value as DimensionValue;
+    if (isDimensionWorklet(paddingRight.value))
+      style.paddingRight = paddingRight.value as DimensionValue;
+    if (isDimensionWorklet(paddingBottom.value))
+      style.paddingBottom = paddingBottom.value as DimensionValue;
+    if (isNumberWorklet(opacity.value))
+      style.opacity = opacity.value as AnimatableNumericValue;
+    if (isStringWorklet(props.color))
+      style.color = interpolateColor(
+        colorProgress.value,
+        [0, 1],
+        [(prevColor.value ?? props.color) as string, props.color as string],
+      );
+    if (isStringWorklet(props.backgroundColor))
+      style.backgroundColor = interpolateColor(
+        bgProgress.value,
+        [0, 1],
+        [
+          (prevBgColor.value ?? props.backgroundColor) as string,
+          props.backgroundColor as string,
+        ],
+      );
+    if (props.transform)
+      style.transform = [
+        isNumberWorklet(perspective.value)
+          ? { perspective: perspective.value as AnimatableNumericValue }
+          : null,
+        isStringWorklet(rotate.value)
+          ? { rotate: rotate.value as AnimatableStringValue }
+          : null,
+        isStringWorklet(rotateX.value)
+          ? { rotateX: rotateX.value as AnimatableStringValue }
+          : null,
+        isStringWorklet(rotateY.value)
+          ? { rotateY: rotateY.value as AnimatableStringValue }
+          : null,
+        isStringWorklet(rotateZ.value)
+          ? { rotateZ: rotateZ.value as AnimatableStringValue }
+          : null,
+        isNumberWorklet(scale.value)
+          ? { scale: scale.value as AnimatableNumericValue }
+          : null,
+        isNumberWorklet(scaleX.value)
+          ? { scaleX: scaleX.value as AnimatableNumericValue }
+          : null,
+        isNumberWorklet(scaleY.value)
+          ? { scaleY: scaleY.value as AnimatableNumericValue }
+          : null,
+        isNumberWorklet(translateX.value)
+          ? { translateX: translateX.value as AnimatableNumericValue }
+          : null,
+        isNumberWorklet(translateY.value)
+          ? { translateY: translateY.value as AnimatableNumericValue }
+          : null,
+      ].filter(value => !!value);
+    return style;
+  });
 
   if (!props.transition) return omit(props, "transition");
   return animatedStyle as Record<string, unknown>;

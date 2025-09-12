@@ -17,5 +17,4 @@ export const TEXT_STYLE_MAP = {
   textShadowOffset: "textShadowOffset",
   textShadowRadius: "textShadowRadius",
   textTransform: "textTransform",
-  writingDirection: "writingDirection",
 };

@@ -15,5 +15,4 @@ export const TEXT_STYLE_PROPS = [
   "textShadowOffset",
   "textShadowRadius",
   "textTransform",
-  "writingDirection",
 ];

@@ -1,7 +1,7 @@
 import { isNumber } from "lodash";
 
 export const shadowMapper = (shadow?: unknown, opacity = 0.3) => {
-  if (!shadow || !isNumber(shadow)) return;
+  if (!isNumber(shadow)) return;
   return {
     shadowColor: "#000000",
     shadowOffset: {

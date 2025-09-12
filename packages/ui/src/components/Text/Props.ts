@@ -6,17 +6,17 @@ import { FontSize } from "@bewise/ui/type/FontSize";
 import { FontStyle } from "@bewise/ui/type/FontStyle";
 import { FontVariant } from "@bewise/ui/type/FontVariant";
 import { FontWeight } from "@bewise/ui/type/FontWeight";
+import { Size } from "@bewise/ui/type/Size";
 import { TextAlign } from "@bewise/ui/type/TextAlign";
 import { TextDecorationLine } from "@bewise/ui/type/TextDecorationLine";
 import { TextDecorationStyle } from "@bewise/ui/type/TextDecorationStyle";
 import { TextTransform } from "@bewise/ui/type/TextTransform";
-import { WritingDirection } from "@bewise/ui/type/WritingDirection";
 import { BoxStyle } from "../Box/Props";
 
 export type TextStyle = {
   color?: ColorVariable | Color;
   fontFamily?: FontFamily;
-  fontSize?: FontSize;
+  fontSize?: FontSize | Size;
   fontStyle?: FontStyle;
   fontVariant?: FontVariant;
   fontWeight?: FontWeight;
@@ -30,7 +30,6 @@ export type TextStyle = {
   textShadowOffset?: { width: number; height: number };
   textShadowRadius?: number;
   textTransform?: TextTransform;
-  writingDirection?: WritingDirection;
 };
 
 export type TextStyleKey = keyof TextStyle;
@@ -40,5 +39,6 @@ export type TextStyleProps = BoxStyle & TextStyle;
 export type TextProps = TextStyleProps & {
   id?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span";
+  hidden?: boolean;
   children: ReactNode;
 };

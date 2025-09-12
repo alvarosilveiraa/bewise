@@ -42,7 +42,7 @@ export const _useThemeLayout = (layout?: Partial<ThemeLayout>) => {
         md: layout?.shadow?.md || 4,
         lg: layout?.shadow?.lg || 6,
       },
-      spacing: layout?.spacing || 4,
+      spacing: layout?.spacing || 2,
     }),
     [layout],
   );

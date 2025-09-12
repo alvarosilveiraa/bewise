@@ -1,4 +1,5 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
+import { useLayout } from "@bewise/ui/hooks/useLayout";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
@@ -9,46 +10,59 @@ import { BoxProps } from "./Props";
 export const _Box = ({
   id,
   onPress,
+  onLayout,
+  onLayoutChange,
   disabled,
   children,
   ...props
 }: BoxProps) => {
+  const ref = useRef<View>(null);
   const style = useStyle(props, boxStyleMapper);
   const transition = useTransition(style);
+  const { handleLayoutChange } = useLayout({ ref, onLayout, onLayoutChange });
 
   if (!style.transition) {
     const renderChildren = useCallback(
-      (id?: string) => (
-        <View id={id} style={style}>
+      () => (
+        <View ref={ref} id={id} style={style} onLayout={handleLayoutChange}>
           {children}
         </View>
       ),
-      [children, style],
+      [id, children, ref, style, handleLayoutChange],
     );
 
     if (onPress)
       return (
-        <TouchableWithoutFeedback id={id} onPress={onPress} disabled={disabled}>
+        <TouchableWithoutFeedback onPress={onPress} disabled={disabled}>
           {renderChildren()}
         </TouchableWithoutFeedback>
       );
-    return renderChildren(id);
+    return renderChildren();
   }
 
   const renderAnimatedChildren = useCallback(
-    (id?: string) => (
-      <Animated.View id={id} style={[style, transition]}>
+    () => (
+      <Animated.View
+        ref={ref}
+        id={id}
+        style={[style, transition]}
+        onLayout={handleLayoutChange}
+      >
         {children}
       </Animated.View>
     ),
-    [children, style, transition],
+    [id, children, ref, style, transition, handleLayoutChange],
   );
 
   if (onPress)
     return (
-      <TouchableWithoutFeedback id={id} onPress={onPress} disabled={disabled}>
+      <TouchableWithoutFeedback
+        onPress={onPress}
+        onLayout={handleLayoutChange}
+        disabled={disabled}
+      >
         {renderAnimatedChildren()}
       </TouchableWithoutFeedback>
     );
-  return renderAnimatedChildren(id);
+  return renderAnimatedChildren();
 };
