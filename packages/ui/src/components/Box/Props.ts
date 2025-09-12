@@ -46,7 +46,6 @@ export type BoxStyle = {
   cursor?: Cursor;
   dir?: Direction;
   display?: Display;
-  end?: Dimension;
   fBasis?: number | string;
   fDir?: FlexDirection;
   fGrow?: number;
@@ -84,7 +83,6 @@ export type BoxStyle = {
   right?: Dimension;
   self?: AlignSelf;
   shadow?: number;
-  start?: Dimension;
   tlRadius?: number;
   top?: Dimension;
   transform?: Transform[];

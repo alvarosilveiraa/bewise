@@ -5,13 +5,18 @@ import { SystemBars } from "react-native-edge-to-edge";
 import { useThemeFonts } from "@/fonts";
 
 export default function Layout() {
-  const { themeMode, inverseThemeMode } = useThemeContext();
+  const { themeMode, inverseThemeMode, themeColors } = useThemeContext();
   const { fontsLoaded, hasFontsError } = useThemeFonts();
 
   if (!fontsLoaded || hasFontsError) return null;
   return (
     <Suspense fallback={null}>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: themeColors.background.DEFAULT },
+        }}
+      />
       <SystemBars
         style={{ statusBar: inverseThemeMode, navigationBar: themeMode }}
       />

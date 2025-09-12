@@ -5,7 +5,7 @@ import { Text } from "react-native";
 import Animated from "react-native-reanimated";
 import { TextProps } from "./Props";
 
-export const _Text = ({ id, children, ...props }: TextProps) => {
+export const _Text = ({ id, lines, children, ...props }: TextProps) => {
   const style = useStyle(props);
   const transition = useTransition(style);
   const fontFamily = useMemo(
@@ -16,12 +16,16 @@ export const _Text = ({ id, children, ...props }: TextProps) => {
 
   if (!style.transition)
     return (
-      <Text id={id} style={{ ...style, fontFamily }}>
+      <Text id={id} style={{ ...style, fontFamily }} numberOfLines={lines}>
         {children}
       </Text>
     );
   return (
-    <Animated.Text id={id} style={[{ ...style, fontFamily }, transition]}>
+    <Animated.Text
+      id={id}
+      style={[{ ...style, fontFamily }, transition]}
+      numberOfLines={lines}
+    >
       {children}
     </Animated.Text>
   );

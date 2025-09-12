@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 import { ThemeModeEnum } from "@bewise/common/enums/ThemeMode";
+import { BreakpointProvider } from "@bewise/ui/providers/Breakpoint";
 import { StorageProvider } from "@bewise/ui/providers/Storage";
 import { ThemeProvider } from "@bewise/ui/providers/Theme";
 import { cookies } from "next/headers";
@@ -34,7 +35,9 @@ export default async function Layout({ children }: PropsWithChildren) {
           sessionStorage={sessionStorage}
           cookieStorage={cookieStorage}
         >
-          <ThemeProvider mode={themeMode}>{children}</ThemeProvider>
+          <ThemeProvider mode={themeMode}>
+            <BreakpointProvider>{children}</BreakpointProvider>
+          </ThemeProvider>
         </StorageProvider>
       </body>
     </html>

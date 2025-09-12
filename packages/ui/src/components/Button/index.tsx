@@ -37,7 +37,14 @@ export const Button = ({
       fontSize={
         { xxs: 8, xs: 10, sm: 12, md: 14, lg: 16, xl: 18, xxl: 20 }[size]
       }
-      color={`$${schema}.f`}
+      color={
+        {
+          solid: `$${schema}.f`,
+          flat: `$${schema}.f`,
+          outline: "$foreground",
+          ghost: "$foreground",
+        }[variant] as Color | ColorVariable
+      }
       px={px}
       py={py}
       bg={
@@ -71,6 +78,7 @@ export const Button = ({
       {...props}
       hover={{
         opacity: "$hover",
+        bg: `$${schema}`,
         ...props.hover,
       }}
     />

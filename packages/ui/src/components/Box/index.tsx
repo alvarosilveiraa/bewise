@@ -8,6 +8,7 @@ export const Box = ({ hidden, ...props }: BoxProps) => {
       cursor={
         props.disabled ? "not-allowed" : props.onPress ? "pointer" : undefined
       }
+      fDir={props.display === "flex" ? "column" : undefined}
       {...props}
     />
   );

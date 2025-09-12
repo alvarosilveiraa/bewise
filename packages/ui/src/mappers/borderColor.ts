@@ -1,5 +1,7 @@
+import { isString } from "lodash";
+
 export const borderColorMapper = (borderColor?: unknown) => {
-  if (!borderColor) return;
+  if (!borderColor || !isString(borderColor)) return;
   return {
     borderTopColor: borderColor,
     borderLeftColor: borderColor,

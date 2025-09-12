@@ -1,27 +1,37 @@
 "use client";
 
-import { useState } from "react";
 import { ThemeModeEnum } from "@bewise/common/enums/ThemeMode";
 import { Accordion } from "@bewise/ui/components/Accordion";
-import { Box } from "@bewise/ui/components/Box";
 import { Button } from "@bewise/ui/components/Button";
 import { Center } from "@bewise/ui/components/Center";
+import { Container } from "@bewise/ui/components/Container";
+import { Divider } from "@bewise/ui/components/Divider";
 import { Icon } from "@bewise/ui/components/Icon";
-import { Navigate } from "@bewise/ui/components/Navigate";
 import { Text } from "@bewise/ui/components/Text";
+import { useSafeArea } from "@bewise/ui/hooks/useSafeArea";
+import { useBreakpointContext } from "@bewise/ui/providers/Breakpoint/useContext";
 import { useThemeContext } from "@bewise/ui/providers/Theme/useContext";
 
 export const HomePage = () => {
+  const safeArea = useSafeArea();
   const { themeMode, toggleThemeMode } = useThemeContext();
-  const [expanded, setExpanded] = useState(false);
+  const { setupBreakpoint } = useBreakpointContext();
+  const { eq } = setupBreakpoint();
 
   return (
     <>
-      <Center flex={1} gap={16} p={32} bg="$background">
-        <Text as="h1" fontFamily="Ubuntu" fontWeight="700">
-          Hello world!
-        </Text>
-        <Button schema="primary" onPress={toggleThemeMode} iconOnly>
+      <Container
+        fDir="row"
+        items="center"
+        justify={eq("mobile") ? "space-between" : "flex-end"}
+        gap={12}
+        maxW={600}
+        pt={safeArea.top ? safeArea.top + 12 : undefined}
+        p={24}
+        bg="$background.50"
+      >
+        <Text hidden={!eq("mobile")}>Mobile Only</Text>
+        <Button schema="secondary" onPress={toggleThemeMode} iconOnly>
           <Icon
             library="md"
             name={
@@ -30,54 +40,51 @@ export const HomePage = () => {
             color="$primary.f"
           />
         </Button>
-        <Accordion
-          data={[
-            {
-              title: "Titulo 1",
-              content: "Conteudo sad asjduas hud asud ashud",
-            },
-            {
-              title: "Titulo 2",
-              content: "Conteudo sad asjduas hud asud ashud",
-            },
-            {
-              title: "Titulo 2",
-              content: "Conteudo sad asjduas hud asud ashud",
-            },
-          ]}
-          title={item => item.title}
-          content={item => item.content}
-        />
-      </Center>
-      <Box
-        display="flex"
-        fDir="column"
-        justify="flex-start"
-        items="center"
-        position="absolute"
-        left={0}
-        right={0}
-        bottom={expanded ? 0 : -240}
-        h={300}
-        bg={expanded ? "$background.50" : "$background.100"}
-        bw={1}
-        bc="$divider"
-        bs="solid"
-        transition={{ duration: 300 }}
-        onPress={() => setExpanded(!expanded)}
-        hidden
+      </Container>
+      <Divider />
+      <Center
+        flex={1}
+        pb={safeArea.bottom ? safeArea.bottom + 32 : undefined}
+        p={32}
+        bg="$background"
       >
-        <Navigate to="/other">
-          <Button
-            transform={[{ scale: expanded ? 1.6 : 1 }]}
-            transition={{ duration: 300 }}
-            bg="$success"
-            color="$success.f"
-          >
-            {expanded ? "/\\" : "\\/"}
-          </Button>
-        </Navigate>
-      </Box>
+        <Container maxW={600} gap={32}>
+          <Text as="h1" fontFamily="Ubuntu" fontWeight="700">
+            Frequently Questions
+          </Text>
+          <Accordion
+            data={[
+              {
+                title: "What is BeWise?",
+                content:
+                  "We are a Brazilian technology company with a highly skilled team of front-end, back-end, and full-stack developers, along with an expert UI/UX Product Designer dedicated to creating seamless and engaging digital experiences. We help you take control of your brand, customer relationships, and profits — without relying on third-party platforms.",
+              },
+              {
+                title: "How is BeWise different from others players?",
+                content:
+                  "Unlike those platforms, we don’t take a percentage of your sales. With BeWise, you pay a flat monthly fee and keep 100% of your order revenue. You also get full access to your customer data and complete brand control.",
+              },
+              {
+                title: "Do I need to be tech-savvy to use it?",
+                content:
+                  "Not at all. We handle all the technical parts for you. You’ll receive training and support to manage your app and website easily.",
+              },
+              {
+                title: "What payment methods are supported?",
+                content:
+                  "We integrate secure payment options including card, cash, vouchers, Apple Pay, and Google Pay.",
+              },
+              {
+                title: "What if I have multiple restaurant locations?",
+                content:
+                  "We support multi-branch setups! Each location can be managed individually within the same platform.",
+              },
+            ]}
+            title={item => item.title}
+            content={item => item.content}
+          />
+        </Container>
+      </Center>
     </>
   );
 };

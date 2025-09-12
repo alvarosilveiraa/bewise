@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo, useState } from "react";
 import { isEmpty } from "lodash";
 import { Box } from "../Box";

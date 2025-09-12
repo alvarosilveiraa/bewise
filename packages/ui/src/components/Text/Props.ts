@@ -39,6 +39,7 @@ export type TextStyleProps = BoxStyle & TextStyle;
 export type TextProps = TextStyleProps & {
   id?: string;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span";
+  lines?: number;
   hidden?: boolean;
   children: ReactNode;
 };

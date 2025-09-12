@@ -33,7 +33,7 @@ export const Accordion = <I extends object = Record<string, unknown>>({
   const renderContent = useCallback(
     (item: I) => {
       if (Content) return <Content item={item} />;
-      return <Text>{content?.(item) || "-"}</Text>;
+      return <Text color="$foreground.300">{content?.(item) || "-"}</Text>;
     },
     [Content, content],
   );
@@ -53,7 +53,7 @@ export const Accordion = <I extends object = Record<string, unknown>>({
 
   if (hidden || !data.length) return null;
   return (
-    <Box display="flex" fDir="column" gap={6} w="100%" maxW={600}>
+    <Box display="flex" gap={6}>
       {data.map((item, index) => {
         const expanded = expansion.includes(index);
         return (
@@ -65,16 +65,19 @@ export const Accordion = <I extends object = Record<string, unknown>>({
             ) : (
               <Button
                 variant={expanded ? "solid" : "outline"}
-                size="lg"
+                size="xl"
                 w="100%"
                 blRadius={expanded ? 0 : undefined}
                 brRadius={expanded ? 0 : undefined}
+                hover={{ bg: "$default" }}
                 onPress={() => handleExpansion(index)}
                 endContent={
                   <Icon
                     library="md"
-                    size={18}
-                    name={expanded ? "arrow-drop-up" : "arrow-drop-down"}
+                    size={20}
+                    name={
+                      expanded ? "keyboard-arrow-up" : "keyboard-arrow-down"
+                    }
                   />
                 }
               >
@@ -90,11 +93,12 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               bs="solid"
               px={16}
               py={12}
-              blRadius={4}
-              brRadius={4}
+              blRadius={6}
+              brRadius={6}
+              bg="$background.50"
               initial={{ h: 0, py: 0, bw: 0, opacity: 0 }}
               animate={expanded ? { h: "auto", py: 12, bw: 1, opacity: 1 } : {}}
-              transition={{ duration: 300, easing: EasingEnum.EaseInOut }}
+              transition={{ duration: 300, easing: EasingEnum.EaseOut }}
             >
               {renderContent(item)}
             </Motion>
