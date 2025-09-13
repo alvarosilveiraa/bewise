@@ -1,12 +1,13 @@
 import { useThemeContext } from "@bewise/ui/providers/Theme/useContext";
 import * as Inter from "@expo-google-fonts/inter";
+import * as Montserrat from "@expo-google-fonts/montserrat";
 import * as Mulish from "@expo-google-fonts/mulish";
 import * as Ubuntu from "@expo-google-fonts/ubuntu";
 import { FontSource, useFonts } from "expo-font";
 
-const FONTS = { Inter, Mulish, Ubuntu };
+const FONTS = { Inter, Mulish, Montserrat, Ubuntu };
 
-const FONTS_ENABLED = ["Inter", "Mulish", "Ubuntu"];
+const FONTS_ENABLED = ["Inter", "Mulish", "Montserrat", "Ubuntu"];
 
 const FONT_PATHNAMES = [
   { name: "_200", path: "_200ExtraLight" },

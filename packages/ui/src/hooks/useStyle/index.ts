@@ -13,7 +13,7 @@ import { Opacity } from "@bewise/ui/type/Opacity";
 import { Size } from "@bewise/ui/type/Size";
 import { Style } from "@bewise/ui/type/Style";
 import { ThemeColorsConfig } from "@bewise/ui/type/ThemeColorsConfig";
-import { isString } from "lodash";
+import { isNull, isString } from "lodash";
 
 export const useStyle = <S extends object = Record<string, unknown>>(
   style?: Style,
@@ -21,14 +21,8 @@ export const useStyle = <S extends object = Record<string, unknown>>(
 ) => {
   const { themeColors, themeLayout } = useThemeContext();
 
-  // TODO:
-  // export const colorAlpha = (alpha: number) => {
-  //   const hex = Math.round(alpha * 255).toString(16);
-  //   return hex.length === 1 ? "0" + hex : hex;
-  // };
-
   const getColor = useCallback(
-    (key: keyof ThemeColorsConfig, color?: ColorVariable | Color) => {
+    (key: keyof ThemeColorsConfig, color: string) => {
       if (color === `$${key}`) return themeColors[key].DEFAULT;
       if (color === `$${key}.f`) return themeColors[key].foreground;
       if (color === `$${key}.50`) return themeColors[key][50];
@@ -45,28 +39,38 @@ export const useStyle = <S extends object = Record<string, unknown>>(
     [themeColors],
   );
 
+  const getColorAlpha = useCallback((color: Color, alpha: number | null) => {
+    if (!color.startsWith("#") || isNull(alpha)) return color;
+    const hex = Math.round(alpha * 255).toString(16);
+    const alphaHex = hex.length === 1 ? "0" + hex : hex;
+    return `${color}${alphaHex}`;
+  }, []);
+
   const colorMapper = useCallback(
     (color?: ColorVariable | Color) => {
-      const accentColor = getColor("accent", color);
-      if (accentColor) return accentColor;
-      const backgroundColor = getColor("background", color);
-      if (backgroundColor) return backgroundColor;
-      const dangerColor = getColor("danger", color);
-      if (dangerColor) return dangerColor;
-      const defaultColor = getColor("default", color);
-      if (defaultColor) return defaultColor;
-      const dividerColor = getColor("divider", color);
-      if (dividerColor) return dividerColor;
-      const foregroundColor = getColor("foreground", color);
-      if (foregroundColor) return foregroundColor;
-      const primaryColor = getColor("primary", color);
-      if (primaryColor) return primaryColor;
-      const secondaryColor = getColor("secondary", color);
-      if (secondaryColor) return secondaryColor;
-      const successColor = getColor("success", color);
-      if (successColor) return successColor;
-      const warningColor = getColor("warning", color);
-      if (warningColor) return warningColor;
+      if (!color) return;
+      const [colorStr, alphaStr] = color.split("/");
+      const alpha = alphaStr ? Number(alphaStr) : null;
+      const accentColor = getColor("accent", colorStr);
+      if (accentColor) return getColorAlpha(accentColor, alpha);
+      const backgroundColor = getColor("background", colorStr);
+      if (backgroundColor) return getColorAlpha(backgroundColor, alpha);
+      const dangerColor = getColor("danger", colorStr);
+      if (dangerColor) return getColorAlpha(dangerColor, alpha);
+      const defaultColor = getColor("default", colorStr);
+      if (defaultColor) return getColorAlpha(defaultColor, alpha);
+      const dividerColor = getColor("divider", colorStr);
+      if (dividerColor) return getColorAlpha(dividerColor, alpha);
+      const foregroundColor = getColor("foreground", colorStr);
+      if (foregroundColor) return getColorAlpha(foregroundColor, alpha);
+      const primaryColor = getColor("primary", colorStr);
+      if (primaryColor) return getColorAlpha(primaryColor, alpha);
+      const secondaryColor = getColor("secondary", colorStr);
+      if (secondaryColor) return getColorAlpha(secondaryColor, alpha);
+      const successColor = getColor("success", colorStr);
+      if (successColor) return getColorAlpha(successColor, alpha);
+      const warningColor = getColor("warning", colorStr);
+      if (warningColor) return getColorAlpha(warningColor, alpha);
       return color;
     },
     [getColor],
@@ -80,7 +84,7 @@ export const useStyle = <S extends object = Record<string, unknown>>(
     [themeLayout.fontFamily],
   );
 
-  const formatSizeMapper = useCallback(
+  const sizeMapper = useCallback(
     (size?: Size) => {
       if (isString(size)) {
         const value = Number(size.replace("$", ""));
@@ -91,7 +95,7 @@ export const useStyle = <S extends object = Record<string, unknown>>(
     [themeLayout.spacing],
   );
 
-  const fontFontSizeMapper = useCallback(
+  const fontSizeMapper = useCallback(
     (fontSize?: FontSize | Size) => {
       if (fontSize === "$h1") return themeLayout.fontSize.h1;
       if (fontSize === "$h2") return themeLayout.fontSize.h2;
@@ -100,9 +104,9 @@ export const useStyle = <S extends object = Record<string, unknown>>(
       if (fontSize === "$h5") return themeLayout.fontSize.h5;
       if (fontSize === "$p") return themeLayout.fontSize.p;
       if (fontSize === "$span") return themeLayout.fontSize.span;
-      return formatSizeMapper(fontSize);
+      return sizeMapper(fontSize);
     },
-    [themeLayout.fontSize, formatSizeMapper],
+    [themeLayout.fontSize, sizeMapper],
   );
 
   const fontWeightMapper = useCallback(
@@ -119,7 +123,7 @@ export const useStyle = <S extends object = Record<string, unknown>>(
     [themeLayout.fontWeight],
   );
 
-  const formatOpacityMapper = useCallback(
+  const opacityMapper = useCallback(
     (opacity?: Opacity) => {
       if (opacity === "$disabled") return themeLayout.opacity.disabled;
       if (opacity === "$hover") return themeLayout.opacity.hover;
@@ -128,9 +132,17 @@ export const useStyle = <S extends object = Record<string, unknown>>(
     [themeLayout.opacity],
   );
 
+  const overflowMapper = useCallback((overflow?: boolean) => {
+    if (overflow === true) return "auto";
+    if (overflow === false) return "hidden";
+  }, []);
+
   return mapper<S>(
     clearNullish({
       ...style,
+      overflow: overflowMapper(style?.overflow),
+      overflowX: overflowMapper(style?.overflowX),
+      overflowY: overflowMapper(style?.overflowY),
       bbc: colorMapper(style?.bbc),
       bc: colorMapper(style?.bc),
       bg: colorMapper(style?.bg),
@@ -139,11 +151,11 @@ export const useStyle = <S extends object = Record<string, unknown>>(
       btc: colorMapper(style?.btc),
       color: colorMapper(style?.color),
       fontFamily: fontFamilyMapper(style?.fontFamily),
-      fontSize: fontFontSizeMapper(style?.fontSize),
+      fontSize: fontSizeMapper(style?.fontSize),
       fontWeight: fontWeightMapper(style?.fontWeight),
-      gap: formatSizeMapper(style?.gap),
-      opacity: formatOpacityMapper(style?.opacity),
-      size: formatSizeMapper(style?.size),
+      gap: sizeMapper(style?.gap),
+      opacity: opacityMapper(style?.opacity),
+      size: sizeMapper(style?.size),
     }),
   );
 };

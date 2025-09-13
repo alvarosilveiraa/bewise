@@ -4,7 +4,7 @@ import { ThemeLayout } from "@bewise/ui/type/ThemeLayout";
 export const _useThemeLayout = (layout?: Partial<ThemeLayout>) => {
   const themeLayout = useMemo<ThemeLayout>(
     () => ({
-      fontFamily: layout?.fontFamily || "Mulish",
+      fontFamily: layout?.fontFamily || "Montserrat",
       fontSize: {
         h1: layout?.fontSize?.h1 || 26,
         h2: layout?.fontSize?.h2 || 22,

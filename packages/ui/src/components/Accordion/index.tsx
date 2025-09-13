@@ -33,7 +33,17 @@ export const Accordion = <I extends object = Record<string, unknown>>({
   const renderContent = useCallback(
     (item: I) => {
       if (Content) return <Content item={item} />;
-      return <Text color="$foreground.300">{content?.(item) || "-"}</Text>;
+      return (
+        <Text
+          fontFamily="Ubuntu"
+          fontWeight="400"
+          fontSize={18}
+          lineHeight={1.6}
+          color="$foreground.300"
+        >
+          {content?.(item) || "-"}
+        </Text>
+      );
     },
     [Content, content],
   );
@@ -69,7 +79,6 @@ export const Accordion = <I extends object = Record<string, unknown>>({
                 w="100%"
                 blRadius={expanded ? 0 : undefined}
                 brRadius={expanded ? 0 : undefined}
-                hover={{ bg: "$default" }}
                 onPress={() => handleExpansion(index)}
                 endContent={
                   <Icon
@@ -85,7 +94,7 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               </Button>
             )}
             <Motion
-              overflow="hidden"
+              overflow={false}
               opacity={0}
               btw={0}
               bw={1}

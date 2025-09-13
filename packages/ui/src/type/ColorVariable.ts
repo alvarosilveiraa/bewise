@@ -2,32 +2,62 @@ import { ColorScale } from "./ColorScale";
 
 export type ColorVariable =
   | "$accent"
+  | `$accent/${number}`
   | "$accent.f"
+  | `$accent.f/${number}`
   | `$accent.${ColorScale}`
+  | `$accent.${ColorScale}/${number}`
   | "$background"
+  | `$background/${number}`
   | "$background.f"
+  | `$background.f/${number}`
   | `$background.${ColorScale}`
+  | `$background.${ColorScale}/${number}`
   | "$danger"
+  | `$danger/${number}`
   | "$danger.f"
+  | `$danger.f/${number}`
   | `$danger.${ColorScale}`
+  | `$danger.${ColorScale}/${number}`
   | "$default"
+  | `$default/${number}`
   | "$default.f"
+  | `$default.f/${number}`
   | `$default.${ColorScale}`
+  | `$default.${ColorScale}/${number}`
   | "$divider"
+  | `$divider/${number}`
   | "$divider.f"
+  | `$divider.f/${number}`
   | `$divider.${ColorScale}`
+  | `$divider.${ColorScale}/${number}`
   | "$foreground"
+  | `$foreground/${number}`
   | "$foreground.f"
+  | `$foreground.f/${number}`
   | `$foreground.${ColorScale}`
+  | `$foreground.${ColorScale}/${number}`
   | "$primary"
+  | `$primary/${number}`
   | "$primary.f"
+  | `$primary.f/${number}`
   | `$primary.${ColorScale}`
+  | `$primary.${ColorScale}/${number}`
   | "$secondary"
+  | `$secondary/${number}`
   | "$secondary.f"
+  | `$secondary.f/${number}`
   | `$secondary.${ColorScale}`
+  | `$secondary.${ColorScale}/${number}`
   | "$success"
+  | `$success/${number}`
   | "$success.f"
+  | `$success.f/${number}`
   | `$success.${ColorScale}`
+  | `$success.${ColorScale}/${number}`
   | "$warning"
+  | `$warning/${number}`
   | "$warning.f"
-  | `$warning.${ColorScale}`;
+  | `$warning.f/${number}`
+  | `$warning.${ColorScale}`
+  | `$warning.${ColorScale}/${number}`;

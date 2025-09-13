@@ -80,9 +80,17 @@ export const BreakpointProvider = ({
         }
       };
 
+      function select<T = unknown>(targets: Record<string, T>, fallback?: T) {
+        for (const target in targets) {
+          if (matches[target]) return targets[target];
+        }
+        return fallback;
+      }
+
       return {
         matches,
         compare,
+        select,
         eq: (target: string) => compare(target, "eq"),
         lt: (target: string) => compare(target, "lt"),
         lte: (target: string) => compare(target, "lte"),

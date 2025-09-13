@@ -58,6 +58,8 @@ export const BOX_STYLE_MAP = {
   my: marginVerticalMapper,
   opacity: "opacity",
   overflow: "overflow",
+  overflowX: "overflowX",
+  overflowY: "overflowY",
   p: "padding",
   pb: "paddingBottom",
   pl: "paddingLeft",

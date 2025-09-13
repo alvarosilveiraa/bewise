@@ -1,5 +1,7 @@
 export const BOX_STYLE_PROPS = [
   "overflow",
+  "overflowX",
+  "overflowY",
   "cursor",
   "dir",
   "opacity",

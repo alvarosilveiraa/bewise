@@ -15,7 +15,6 @@ import { FlexWrap } from "@bewise/ui/type/FlexWrap";
 import { JustifyContent } from "@bewise/ui/type/JustifyContent";
 import { Layout } from "@bewise/ui/type/Layout";
 import { Opacity } from "@bewise/ui/type/Opacity";
-import { Overflow } from "@bewise/ui/type/Overflow";
 import { Position } from "@bewise/ui/type/Position";
 import { Size } from "@bewise/ui/type/Size";
 import { Transform } from "@bewise/ui/type/Transform";
@@ -69,7 +68,9 @@ export type BoxStyle = {
   mx?: Dimension;
   my?: Dimension;
   opacity?: Opacity;
-  overflow?: Overflow;
+  overflow?: boolean;
+  overflowX?: boolean;
+  overflowY?: boolean;
   p?: Dimension;
   pb?: Dimension;
   pl?: Dimension;

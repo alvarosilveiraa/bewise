@@ -1861,6 +1861,7 @@ __metadata:
     "@bewise/common": "npm:*"
     "@bewise/ui": "npm:*"
     "@expo-google-fonts/inter": "npm:^0.4.1"
+    "@expo-google-fonts/montserrat": "npm:^0.4.2"
     "@expo-google-fonts/mulish": "npm:^0.4.2"
     "@expo-google-fonts/ubuntu": "npm:^0.4.1"
     "@react-native-async-storage/async-storage": "npm:2.1.2"
@@ -2152,6 +2153,13 @@ __metadata:
   version: 0.4.1
   resolution: "@expo-google-fonts/inter@npm:0.4.1"
   checksum: 10c0/982e26d2daae56b4e7740e9c9efab5dd42e35da1464cf7deeb163f09d729d29329f03ba7deb1523a8051e62bfbb6b37334a180832f0aa384d1c59b0cadb74c13
+  languageName: node
+  linkType: hard
+
+"@expo-google-fonts/montserrat@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "@expo-google-fonts/montserrat@npm:0.4.2"
+  checksum: 10c0/6b040a64adef7aa1595d013865c7efa7d9a8c6e20ebeeba338f5024492772b5ea7c1476a9a7911bda55a9c55c7a38112607c6a2b74e5079088fb6ac6baf083f9
   languageName: node
   linkType: hard
 

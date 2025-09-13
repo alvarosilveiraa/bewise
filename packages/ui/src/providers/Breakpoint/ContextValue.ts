@@ -10,6 +10,10 @@ export type BreakpointContextValue = {
       target: string,
       operation: BreakpointProviderCompareOperation,
     ) => boolean;
+    select<T = unknown>(
+      targets: Record<string, T>,
+      fallback?: T,
+    ): T | undefined;
     eq: (target: string) => boolean;
     lt: (target: string) => boolean;
     lte: (target: string) => boolean;
