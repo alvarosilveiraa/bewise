@@ -32,7 +32,7 @@ export const BreakpointProvider = ({
   },
   children,
 }: BreakpointProviderProps) => {
-  const layout = useResize();
+  const resize = useResize();
 
   const setupBreakpoint = useCallback(
     (props: BreakpointProviderSetupConfig = {}) => {
@@ -48,14 +48,14 @@ export const BreakpointProvider = ({
 
       const matches: Record<string, boolean> = {};
       for (const [key, size] of Object.entries(extendedConfig)) {
-        matches[key] = isMatchSize(size, layout?.w);
+        matches[key] = isMatchSize(size, resize?.w);
       }
 
       const compare = (
         target: string,
         operation: BreakpointProviderCompareOperation,
       ): boolean => {
-        if (!layout) return false;
+        if (!resize) return false;
         const targetIndex = sortedKeys.indexOf(target);
         if (targetIndex === -1) return false;
 
@@ -80,7 +80,10 @@ export const BreakpointProvider = ({
         }
       };
 
-      function select<T = unknown>(targets: Record<string, T>, fallback?: T) {
+      function select<T = unknown, F = T>(
+        targets: Record<string, T>,
+        fallback?: F,
+      ) {
         for (const target in targets) {
           if (matches[target]) return targets[target];
         }
@@ -98,12 +101,12 @@ export const BreakpointProvider = ({
         gte: (target: string) => compare(target, "gte"),
       };
     },
-    [layout],
+    [resize],
   );
 
   return (
-    <_BreakpointContext.Provider value={{ setupBreakpoint }}>
-      {children}
+    <_BreakpointContext.Provider value={{ resize, setupBreakpoint }}>
+      {resize ? children : null}
     </_BreakpointContext.Provider>
   );
 };

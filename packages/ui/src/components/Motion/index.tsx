@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { isEmpty } from "lodash";
+import { useMemo } from "react";
 import { Box } from "../Box";
 import { BoxStyle } from "../Box/Props";
 import { MotionProps } from "./Props";
@@ -13,24 +12,17 @@ export const Motion = ({
   children,
   ...props
 }: MotionProps) => {
-  const [layout, setLayout] = useState<{ w: number; h: number } | null>(null);
   const style = useMemo<BoxStyle>(
     () => ({
       ...props,
-      ...(layout ? initial : {}),
-      ...(!isEmpty(animate) && layout
-        ? {
-            ...animate,
-            w: animate.w === "auto" ? layout.w : animate.w,
-            h: animate.h === "auto" ? layout.h : animate.h,
-          }
-        : {}),
+      ...initial,
+      ...animate,
     }),
-    [initial, animate, props, layout],
+    [initial, animate, props],
   );
 
   return (
-    <Box {...style} transition={transition} onLayout={setLayout}>
+    <Box {...style} transition={transition}>
       {children}
     </Box>
   );

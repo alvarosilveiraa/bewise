@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { ThemeColorsConfig } from "@bewise/ui/type/ThemeColorsConfig";
 import { BoxStyle } from "../Box/Props";
+import { IconProps } from "../Icon/Props";
 import { TextStyle } from "../Text/Props";
 
 export type ButtonStyleProps = BoxStyle & TextStyle;
@@ -13,8 +14,10 @@ export type ButtonProps = ButtonStyleProps & {
   hover?: ButtonStyleProps;
   onPress?: () => void;
   startContent?: ReactNode;
+  startIcon?: IconProps;
   endContent?: ReactNode;
-  iconOnly?: boolean;
+  endIcon?: IconProps;
+  icon?: IconProps;
   disabled?: boolean;
   hidden?: boolean;
   children?: ReactNode;

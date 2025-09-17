@@ -9,6 +9,7 @@ export const _Navigate = ({
   to,
   type = "push",
   children,
+  ...props
 }: NavigateProps) => {
   const router = useRouter();
 
@@ -20,7 +21,7 @@ export const _Navigate = ({
   if (!to) return children;
   if (isString(children)) return null;
   return (
-    <Box id={id} onPress={onPress}>
+    <Box id={id} onPress={onPress} {...props}>
       {children}
     </Box>
   );

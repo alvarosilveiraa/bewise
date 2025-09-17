@@ -11,6 +11,7 @@ export const Text = ({ as = "p", hidden, ...props }: TextProps) => {
       fontWeight={`$${as}`}
       textAlign="left"
       color="$foreground"
+      lineHeight={1}
       {...props}
     />
   );

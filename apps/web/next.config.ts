@@ -19,6 +19,14 @@ const config: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.bewise.app",
+      },
+    ],
+  },
 };
 
 export default config;

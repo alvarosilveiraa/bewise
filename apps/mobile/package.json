@@ -33,12 +33,14 @@
     "expo-router": "~5.1.6",
     "expo-system-ui": "~5.0.11",
     "expo-updates": "~0.28.17",
+    "lucide-react-native": "^0.544.0",
     "react": "19.0.0",
     "react-native": "0.79.5",
     "react-native-edge-to-edge": "1.6.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
-    "react-native-screens": "~4.11.1"
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "15.11.2"
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",

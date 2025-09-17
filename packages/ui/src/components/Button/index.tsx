@@ -11,7 +11,6 @@ export const Button = ({
   schema = "default",
   variant = "solid",
   size = "md",
-  iconOnly,
   hidden,
   ...props
 }: ButtonProps) => {
@@ -20,9 +19,9 @@ export const Button = ({
     [size],
   );
   const px = useMemo(() => {
-    if (iconOnly) return py;
+    if (props.icon) return py;
     return { xxs: 6, xs: 8, sm: 10, md: 12, lg: 14, xl: 16, xxl: 18 }[size];
-  }, [size, iconOnly, py]);
+  }, [size, props.icon, py]);
 
   if (hidden) return null;
   return (
@@ -49,6 +48,7 @@ export const Button = ({
           xxl: "600",
         }[size] as FontWeight
       }
+      textAlign="center"
       color={
         {
           solid: `$${schema}.f`,

@@ -32,11 +32,6 @@ const isStringWorklet = (value: unknown) => {
   return typeof value === "string" && !!value;
 };
 
-const isDimensionWorklet = (value: unknown) => {
-  "worklet";
-  return typeof value === "number" || (typeof value === "string" && !!value);
-};
-
 const getTimingConfig = (config: Omit<Transition, "key">) => ({
   duration: config.duration,
   easing: {
@@ -110,7 +105,11 @@ export const _useTransition = (props: Record<string, unknown>) => {
   const right = useSharedValue(props.right);
   const bottom = useSharedValue(props.bottom);
   const width = useSharedValue(props.width);
+  const minWidth = useSharedValue(props.minWidth);
+  const maxWidth = useSharedValue(props.maxWidth);
   const height = useSharedValue(props.height);
+  const minHeight = useSharedValue(props.minHeight);
+  const maxHeight = useSharedValue(props.maxHeight);
   const padding = useSharedValue(props.padding);
   const paddingTop = useSharedValue(props.paddingTop);
   const paddingLeft = useSharedValue(props.paddingLeft);
@@ -177,7 +176,24 @@ export const _useTransition = (props: Record<string, unknown>) => {
   useEffect(() => setDimension("right", props.right, right), [props.right]);
   useEffect(() => setDimension("bottom", props.bottom, bottom), [props.bottom]);
   useEffect(() => setDimension("width", props.width, width), [props.width]);
+  useEffect(
+    () => setDimension("minWidth", props.minWidth, minWidth),
+    [props.minWidth],
+  );
+  useEffect(
+    () => setDimension("maxWidth", props.maxWidth, maxWidth),
+    [props.maxWidth],
+  );
+  useEffect(() => setDimension("width", props.width, width), [props.width]);
   useEffect(() => setDimension("height", props.height, height), [props.height]);
+  useEffect(
+    () => setDimension("minHeight", props.minHeight, minHeight),
+    [props.minHeight],
+  );
+  useEffect(
+    () => setDimension("maxHeight", props.maxHeight, maxHeight),
+    [props.maxHeight],
+  );
   useEffect(
     () => setDimension("padding", props.padding, padding),
     [props.padding],
@@ -259,26 +275,33 @@ export const _useTransition = (props: Record<string, unknown>) => {
 
   const animatedStyle = useAnimatedStyle(() => {
     const style: ViewStyle & ImageStyle & TextStyle = {};
-    if (isDimensionWorklet(top.value)) style.top = top.value as DimensionValue;
-    if (isDimensionWorklet(left.value))
-      style.left = left.value as DimensionValue;
-    if (isDimensionWorklet(right.value))
+    if (isNumberWorklet(top.value)) style.top = top.value as DimensionValue;
+    if (isNumberWorklet(left.value)) style.left = left.value as DimensionValue;
+    if (isNumberWorklet(right.value))
       style.right = right.value as DimensionValue;
-    if (isDimensionWorklet(bottom.value))
+    if (isNumberWorklet(bottom.value))
       style.bottom = bottom.value as DimensionValue;
-    if (isDimensionWorklet(width.value))
+    if (isNumberWorklet(width.value))
       style.width = width.value as DimensionValue;
-    if (isDimensionWorklet(height.value))
+    if (isNumberWorklet(minWidth.value))
+      style.minWidth = minWidth.value as DimensionValue;
+    if (isNumberWorklet(maxWidth.value))
+      style.maxWidth = maxWidth.value as DimensionValue;
+    if (isNumberWorklet(height.value))
       style.height = height.value as DimensionValue;
-    if (isDimensionWorklet(padding.value))
+    if (isNumberWorklet(minHeight.value))
+      style.minHeight = minHeight.value as DimensionValue;
+    if (isNumberWorklet(maxHeight.value))
+      style.maxHeight = maxHeight.value as DimensionValue;
+    if (isNumberWorklet(padding.value))
       style.padding = padding.value as DimensionValue;
-    if (isDimensionWorklet(paddingTop.value))
+    if (isNumberWorklet(paddingTop.value))
       style.paddingTop = paddingTop.value as DimensionValue;
-    if (isDimensionWorklet(paddingLeft.value))
+    if (isNumberWorklet(paddingLeft.value))
       style.paddingLeft = paddingLeft.value as DimensionValue;
-    if (isDimensionWorklet(paddingRight.value))
+    if (isNumberWorklet(paddingRight.value))
       style.paddingRight = paddingRight.value as DimensionValue;
-    if (isDimensionWorklet(paddingBottom.value))
+    if (isNumberWorklet(paddingBottom.value))
       style.paddingBottom = paddingBottom.value as DimensionValue;
     if (isNumberWorklet(opacity.value))
       style.opacity = opacity.value as AnimatableNumericValue;

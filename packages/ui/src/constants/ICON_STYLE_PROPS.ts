@@ -1,1 +1,1 @@
-export const ICON_STYLE_PROPS = ["color", "size"];
+export const ICON_STYLE_PROPS = ["color", "fill", "size"];

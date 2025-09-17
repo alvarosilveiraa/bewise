@@ -140,9 +140,6 @@ export const useStyle = <S extends object = Record<string, unknown>>(
   return mapper<S>(
     clearNullish({
       ...style,
-      overflow: overflowMapper(style?.overflow),
-      overflowX: overflowMapper(style?.overflowX),
-      overflowY: overflowMapper(style?.overflowY),
       bbc: colorMapper(style?.bbc),
       bc: colorMapper(style?.bc),
       bg: colorMapper(style?.bg),
@@ -150,11 +147,15 @@ export const useStyle = <S extends object = Record<string, unknown>>(
       brc: colorMapper(style?.brc),
       btc: colorMapper(style?.btc),
       color: colorMapper(style?.color),
+      fill: colorMapper(style?.fill),
       fontFamily: fontFamilyMapper(style?.fontFamily),
       fontSize: fontSizeMapper(style?.fontSize),
       fontWeight: fontWeightMapper(style?.fontWeight),
       gap: sizeMapper(style?.gap),
       opacity: opacityMapper(style?.opacity),
+      overflow: overflowMapper(style?.overflow),
+      overflowX: overflowMapper(style?.overflowX),
+      overflowY: overflowMapper(style?.overflowY),
       size: sizeMapper(style?.size),
     }),
   );

@@ -4,7 +4,6 @@ import { useCallback, useState } from "react";
 import { EasingEnum } from "@bewise/ui/enums/Easing";
 import { Box } from "../Box";
 import { Button } from "../Button";
-import { Icon } from "../Icon";
 import { Motion } from "../Motion";
 import { Text } from "../Text";
 import { AccordionProps } from "./Props";
@@ -76,19 +75,15 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               <Button
                 variant={expanded ? "solid" : "outline"}
                 size="xl"
+                justify="space-between"
+                textAlign="left"
                 w="100%"
                 blRadius={expanded ? 0 : undefined}
                 brRadius={expanded ? 0 : undefined}
                 onPress={() => handleExpansion(index)}
-                endContent={
-                  <Icon
-                    library="md"
-                    size={20}
-                    name={
-                      expanded ? "keyboard-arrow-up" : "keyboard-arrow-down"
-                    }
-                  />
-                }
+                endIcon={{
+                  name: expanded ? "ChevronUp" : "ChevronDown",
+                }}
               >
                 {renderTitle(item)}
               </Button>
@@ -105,9 +100,11 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               blRadius={6}
               brRadius={6}
               bg="$background.50"
-              initial={{ h: 0, py: 0, bw: 0, opacity: 0 }}
-              animate={expanded ? { h: "auto", py: 12, bw: 1, opacity: 1 } : {}}
-              transition={{ duration: 300, easing: EasingEnum.EaseOut }}
+              initial={{ maxH: 0, py: 0, bw: 0, opacity: 0 }}
+              animate={
+                expanded ? { maxH: 1000, py: 12, bw: 1, opacity: 1 } : {}
+              }
+              transition={{ duration: 300, easing: EasingEnum.EaseInOut }}
             >
               {renderContent(item)}
             </Motion>
