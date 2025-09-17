@@ -43,7 +43,7 @@ export const HomePage = () => {
           <Image
             w={32}
             h={32}
-            src="http://localhost:8000/storage/assets/icon.png"
+            src="https://api.bewise.app/storage/assets/icon.png"
             hidden={!eq("mobile")}
           />
           <Image
@@ -51,8 +51,8 @@ export const HomePage = () => {
             h={17}
             src={
               themeMode === ThemeModeEnum.Light
-                ? "http://localhost:8000/storage/assets/logo-light.svg"
-                : "http://localhost:8000/storage/assets/logo-dark.svg"
+                ? "https://api.bewise.app/storage/assets/logo-light.svg"
+                : "https://api.bewise.app/storage/assets/logo-dark.svg"
             }
             hidden={eq("mobile")}
           />
@@ -176,7 +176,7 @@ export const HomePage = () => {
                 w={select({ section1: "100%" }, 340)}
                 h={280}
                 radius={12}
-                src="http://localhost:8000/storage/assets/all-in-one.webp"
+                src="https://api.bewise.app/storage/assets/all-in-one.webp"
               />
             </Box>
           </Container>
@@ -494,7 +494,7 @@ export const HomePage = () => {
                   <Image
                     w={87}
                     h={19}
-                    src="http://localhost:8000/storage/assets/lennoxs.svg"
+                    src="https://api.bewise.app/storage/assets/lennoxs.svg"
                   />
                 </Navigate>
                 <Navigate
@@ -507,7 +507,7 @@ export const HomePage = () => {
                     w={126}
                     h={26}
                     resizeMode="contain"
-                    src="http://localhost:8000/storage/assets/innout.svg"
+                    src="https://api.bewise.app/storage/assets/innout.svg"
                   />
                 </Navigate>
               </Box>
@@ -622,8 +622,8 @@ export const HomePage = () => {
                   {
                     src:
                       themeMode === ThemeModeEnum.Light
-                        ? "http://localhost:8000/storage/assets/logo-light.svg"
-                        : "http://localhost:8000/storage/assets/logo-dark.svg",
+                        ? "https://api.bewise.app/storage/assets/logo-light.svg"
+                        : "https://api.bewise.app/storage/assets/logo-dark.svg",
                     description:
                       "Complete restaurant and delivery systems for the modern food service industry.",
                   },
