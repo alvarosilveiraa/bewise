@@ -1,0 +1,13 @@
+import { ReactNode } from "react";
+import { Transition } from "@bewise/ui/type/Transition";
+import { BoxStyle } from "../Box/Props";
+import { TextStyle } from "../Text/Props";
+
+export type MotionStyleProps = BoxStyle & TextStyle;
+
+export type MotionProps = MotionStyleProps & {
+  initial?: MotionStyleProps;
+  animate?: MotionStyleProps;
+  transition?: Omit<Transition, "key">;
+  children?: ReactNode;
+};

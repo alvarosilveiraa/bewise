@@ -1,53 +1,44 @@
-import type React from "react";
-import { Suspense } from "react";
+import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
-// import { Analytics } from "@vercel/analytics/next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
-import { ThemeProvider } from "next-themes";
-import { Montserrat, Open_Sans } from "next/font/google";
-import "./globals.css";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-montserrat",
-  weight: ["400", "600", "700", "900"],
-});
-
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-open-sans",
-  weight: ["400", "500", "600"],
-});
+import { ThemeModeEnum } from "@bewise/common/enums/ThemeMode";
+import { BreakpointProvider } from "@bewise/ui/providers/Breakpoint";
+import { StorageProvider } from "@bewise/ui/providers/Storage";
+import { ThemeProvider } from "@bewise/ui/providers/Theme";
+import { cookies } from "next/headers";
+import "../fonts";
+import "./global.css";
+import { cookieStorage, localStorage, sessionStorage } from "@/storage";
 
 export const metadata: Metadata = {
   title: "BeWise - All-in-one Restaurant & Delivery Solutions",
   description:
     "Transform your restaurant with BeWise's complete suite of integrated solutions: mobile apps, kitchen displays, ordering websites, admin dashboards, and POS systems.",
-  generator: "v0.app",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const fetchThemeMode = async () => {
+  const cookieStore = await cookies();
+  const item = cookieStore.get("theme-mode")?.value;
+  if (!item) return;
+  const value = JSON.parse(item)?.value;
+  if (!value) return;
+  return value as ThemeModeEnum;
+};
+
+export default async function Layout({ children }: PropsWithChildren) {
+  const themeMode = await fetchThemeMode();
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`dark font-sans ${GeistSans.variable} ${GeistMono.variable} ${montserrat.variable} ${openSans.variable}`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <html lang="en">
+      <body className={themeMode}>
+        <StorageProvider
+          localStorage={localStorage}
+          sessionStorage={sessionStorage}
+          cookieStorage={cookieStorage}
         >
-          <Suspense fallback={null}>{children}</Suspense>
-        </ThemeProvider>
-        {/* <Analytics /> */}
+          <ThemeProvider mode={themeMode}>
+            <BreakpointProvider>{children}</BreakpointProvider>
+          </ThemeProvider>
+        </StorageProvider>
       </body>
     </html>
   );

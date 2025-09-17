@@ -1,0 +1,18 @@
+export const TEXT_STYLE_PROPS = [
+  "color",
+  "fontFamily",
+  "fontSize",
+  "fontStyle",
+  "fontVariant",
+  "fontWeight",
+  "letterSpacing",
+  "lineHeight",
+  "textAlign",
+  "textDecorationColor",
+  "textDecorationLine",
+  "textDecorationStyle",
+  "textShadowColor",
+  "textShadowOffset",
+  "textShadowRadius",
+  "textTransform",
+];

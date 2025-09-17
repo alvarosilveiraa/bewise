@@ -15,10 +15,19 @@
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
+    "moduleSuffixes": [".web", ""],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@bewise/common/*": ["../../packages/common/src/*"],
+      "@bewise/ui/*": ["../../packages/ui/src/*"]
     }
   },
-  "include": [".next/types/**/*.ts", "next-env.d.ts", "src"],
-  "exclude": ["node_modules"]
+  "include": [
+    "../../packages/common/src",
+    "../../packages/ui/src",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "src"
+  ],
+  "exclude": ["../../node_modules"]
 }
