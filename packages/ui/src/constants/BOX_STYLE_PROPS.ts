@@ -49,6 +49,9 @@ export const BOX_STYLE_PROPS = [
   "pb",
 
   "bg",
+  "bgImage",
+  "bgPosition",
+  "bgResizeMode",
 
   "bw",
   "btw",

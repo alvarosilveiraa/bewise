@@ -4,6 +4,7 @@ import { paddingHorizontalMapper } from "@bewise/ui/mappers/paddingHorizontal";
 import { paddingVerticalMapper } from "@bewise/ui/mappers/paddingVertical";
 import { shadowMapper } from "@bewise/ui/mappers/shadow";
 import { transformMapper } from "@bewise/ui/mappers/transform";
+import { backgroundImageMapper } from "../mappers/backgroundImage";
 import { borderColorMapper } from "../mappers/borderColor";
 import { borderRadiusMapper } from "../mappers/borderRadius";
 import { borderWidthMapper } from "../mappers/borderWidth";
@@ -16,6 +17,9 @@ export const BOX_STYLE_MAP = {
   bc: borderColorMapper,
   bfv: "backfaceVisibility",
   bg: "backgroundColor",
+  bgImage: backgroundImageMapper,
+  bgPosition: "backgroundPosition",
+  bgResizeMode: "backgroundSize",
   blc: "borderLeftColor",
   blRadius: "borderBottomLeftRadius",
   bls: "borderLeftStyle",

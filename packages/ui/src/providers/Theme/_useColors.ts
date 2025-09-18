@@ -24,7 +24,7 @@ export const _useThemeColors = ({
       ),
       foreground: colorScale(
         ThemeModeEnum.Light,
-        light?.foreground || "#1a1a1a",
+        light?.foreground || "#000000",
       ),
       primary: colorScale(ThemeModeEnum.Light, light?.primary || "#006FEE"),
       secondary: colorScale(ThemeModeEnum.Light, light?.secondary || "#7828c8"),
@@ -36,7 +36,7 @@ export const _useThemeColors = ({
   const themeColorsDark = useMemo(
     () => ({
       accent: colorScale(ThemeModeEnum.Dark, dark?.accent || "#357ABD"),
-      background: colorScale(ThemeModeEnum.Dark, dark?.background || "#1a1a1a"),
+      background: colorScale(ThemeModeEnum.Dark, dark?.background || "#000000"),
       danger: colorScale(ThemeModeEnum.Dark, dark?.danger || "#dc3545"),
       default: colorScale(ThemeModeEnum.Dark, dark?.default || "#71717a"),
       divider: colorScale(
