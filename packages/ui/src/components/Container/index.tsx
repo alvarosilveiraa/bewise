@@ -15,6 +15,9 @@ export const Container = ({
   py,
   p,
   bg,
+  bgImage,
+  bgPosition,
+  bgResizeMode,
   z,
   ...props
 }: ContainerProps) => (
@@ -33,6 +36,9 @@ export const Container = ({
     pr={pr}
     pb={pb}
     bg={bg}
+    bgImage={bgImage}
+    bgPosition={bgPosition}
+    bgResizeMode={bgResizeMode}
     z={z}
   >
     <Box display="flex" w="100%" maxW={1000} ml="auto" mr="auto" {...props} />

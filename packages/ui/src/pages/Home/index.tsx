@@ -58,9 +58,11 @@ export const HomePage = () => {
           />
         </Box>
         <Box display="flex" fDir="row" items="center" gap={12}>
-          <Button schema="primary" hover={{ transform: [{ scale: 1.04 }] }}>
-            Get a demo
-          </Button>
+          <Navigate to="https://wa.me/5551999999999" blank>
+            <Button schema="primary" hover={{ transform: [{ scale: 1.04 }] }}>
+              Get a demo
+            </Button>
+          </Navigate>
           <Button
             variant="flat"
             onPress={toggleThemeMode}
@@ -75,10 +77,10 @@ export const HomePage = () => {
 
       <Scroll
         flex={1}
-        items="center"
-        justify="center"
-        gap={64}
         bg="$background"
+        bgImage={select({ desktop: "/home.png" })}
+        bgPosition="center"
+        bgResizeMode="cover"
       >
         <Box display="flex" w="100%">
           <Container px={32} py={96}>
@@ -159,18 +161,24 @@ export const HomePage = () => {
                   management tools. From mobile ordering to kitchen displays,
                   we've got you covered.
                 </Text>
-                <Button
-                  schema="primary"
-                  size={select({
-                    mobile: "md",
-                    tablet: "lg",
-                    desktop: "lg",
-                  })}
+                <Navigate
                   w={select({ mobile: "100%" }, "auto")}
-                  hover={{ transform: [{ scale: 1.04 }] }}
+                  to="https://wa.me/5551999999999"
+                  blank
                 >
-                  Schedule Demo
-                </Button>
+                  <Button
+                    schema="primary"
+                    size={select({
+                      mobile: "md",
+                      tablet: "lg",
+                      desktop: "lg",
+                    })}
+                    w="100%"
+                    hover={{ transform: [{ scale: 1.04 }] }}
+                  >
+                    Schedule Demo
+                  </Button>
+                </Navigate>
               </Box>
               <Image
                 w={select({ section1: "100%" }, 340)}
@@ -230,10 +238,11 @@ export const HomePage = () => {
                     "Delivery & pickup scheduling",
                     "Secure payment processing",
                   ],
+                  to: "/mobile-app",
                 },
                 {
                   icon: "Monitor",
-                  title: "Kitchen Display App",
+                  title: "Kitchen Display",
                   description:
                     "Real-time order management for kitchen operations",
                   checkList: [
@@ -241,6 +250,7 @@ export const HomePage = () => {
                     "Live customer notifications",
                     "Delivery status updates",
                   ],
+                  to: "/kitchen-display",
                 },
                 {
                   icon: "Globe",
@@ -252,6 +262,7 @@ export const HomePage = () => {
                     "QR code table ordering",
                     "Consistent app experience",
                   ],
+                  to: "/ordering-website",
                 },
                 {
                   icon: "ChartColumn",
@@ -263,6 +274,7 @@ export const HomePage = () => {
                     "Detailed sales reports",
                     "Customer insights",
                   ],
+                  to: "/admin-dashboard",
                 },
                 {
                   icon: "Tablet",
@@ -273,16 +285,18 @@ export const HomePage = () => {
                     "Eat-in order placement",
                     "Reduced wait times",
                   ],
+                  to: "/self-service-kiosk",
                 },
                 {
                   icon: "ChefHat",
-                  title: "Desktop POS App",
+                  title: "Desktop POS",
                   description: "Counter ordering for Windows & macOS",
                   checkList: [
                     "Staff order registration",
                     "Cross-platform support",
                     "Integrated payment processing",
                   ],
+                  to: "/desktop-pos",
                 },
               ]}
               Item={({ item }) => (
@@ -339,7 +353,7 @@ export const HomePage = () => {
                       </Box>
                     ))}
                   </Box>
-                  <Navigate w={select({ mobile: "auto" }, "100%")} to="/other">
+                  <Navigate w={select({ mobile: "auto" }, "100%")} to={item.to}>
                     <Button
                       schema="secondary"
                       variant="flat"
@@ -393,6 +407,7 @@ export const HomePage = () => {
               </Text>
             </Center>
             <Grid
+              gap={24}
               cols={select({
                 mobile: 2,
                 tablet: 2,
@@ -400,26 +415,51 @@ export const HomePage = () => {
               })}
               data={[
                 {
-                  icon: "Clock",
+                  icon: "Timer",
                   title: "Streamlined Operations",
                   description:
-                    "Reduce order processing time and increase efficiency",
+                    "Automate orders and reduce wait times for faster service.",
                 },
                 {
-                  icon: "Users",
+                  icon: "UsersRound",
                   title: "Enhanced Customer Experience",
-                  description: "Seamless ordering across all touchpoints",
+                  description:
+                    "Smooth ordering on web, app, and in-store touchpoints.",
                 },
                 {
-                  icon: "ChartColumn",
-                  title: "Growth Analytics",
-                  description: "Detailed insights to drive business decisions",
-                },
-                {
-                  icon: "Star",
+                  icon: "Palette",
                   title: "Complete Branding",
                   description:
-                    "Fully customized experience across all platforms",
+                    "Your colors, logo, and style on every platform.",
+                },
+                {
+                  icon: "BadgeDollarSign",
+                  title: "Lower Fees",
+                  description:
+                    "Keep more profit with transparent, competitive rates.",
+                },
+                {
+                  icon: "ChartBar",
+                  title: "Growth Analytics",
+                  description:
+                    "Track sales, customers, and performance in real time.",
+                },
+                {
+                  icon: "ShieldCheck",
+                  title: "Secure Payments",
+                  description:
+                    "Trusted gateways for safe and smooth transactions.",
+                },
+                {
+                  icon: "RefreshCw",
+                  title: "Continuous Updates",
+                  description:
+                    "Stay ahead with constant improvements and new features.",
+                },
+                {
+                  icon: "Headphones",
+                  title: "Dedicated Support",
+                  description: "Expert help whenever you need it, 24/7.",
                 },
               ]}
               Item={({ item }) => (
@@ -556,10 +596,81 @@ export const HomePage = () => {
                     content:
                       "We support multi-branch setups! Each location can be managed individually within the same platform.",
                   },
+                  {
+                    title: "Is there a contract or setup fee?",
+                    content:
+                      "Yes, we charge a one-time setup fee and a monthly subscription. There are no hidden costs or commissions per order.",
+                  },
+                  {
+                    title: "Can I use my current menu and branding?",
+                    content:
+                      "Absolutely! You can provide your existing materials — like your menu, product photos, and logo — and we’ll integrate everything into the platform. If you don’t have those ready, no worries — we can create high-quality images, branding assets, and other materials for you.",
+                  },
+                  {
+                    title: "Is the platform updated regularly?",
+                    content:
+                      "Yes! We’re constantly working on improvements and new features. Our team ensures your platform stays modern, secure, and competitive.",
+                  },
                 ]}
                 title={item => item.title}
                 content={item => item.content}
               />
+            </Box>
+          </Container>
+
+          <Divider />
+
+          <Container px={32} py={96}>
+            <Box
+              display="flex"
+              fDir="row"
+              fWrap="wrap"
+              items="center"
+              w="100%"
+              gap={32}
+            >
+              <Image
+                w={select({ section1: "100%" }, 360)}
+                h={360}
+                radius={12}
+                src="/mobile.webp"
+              />
+              <Box
+                display="flex"
+                flex={1}
+                items={select({ mobile: "center" }, "flex-start")}
+                gap={24}
+                minW={select({ section1: undefined }, 400)}
+              >
+                <Text
+                  as="h1"
+                  fontSize={select({
+                    mobile: 28,
+                    tablet: 32,
+                    desktop: 36,
+                  })}
+                  textAlign={select({ desktop: "right" }, "center")}
+                  lineHeight={1}
+                >
+                  Stop losing money to third-party platforms.
+                </Text>
+                <Text
+                  fontFamily="Ubuntu"
+                  fontSize={select({
+                    mobile: 16,
+                    tablet: 18,
+                    desktop: 20,
+                  })}
+                  textAlign={select({ desktop: "right" }, "center")}
+                  lineHeight={1.6}
+                  color="$foreground.100"
+                  maxW={720}
+                >
+                  Every time someone orders through a marketplace, you're paying
+                  to serve your own customer. With BeWise, you keep 100% of the
+                  revenue — and build your brand in the process.
+                </Text>
+              </Box>
             </Box>
           </Container>
 
@@ -594,17 +705,19 @@ export const HomePage = () => {
                   integrated solutions can make
                 </Text>
               </Box>
-              <Button
-                schema="foreground"
-                size={select({
-                  mobile: "md",
-                  tablet: "lg",
-                  desktop: "lg",
-                })}
-                hover={{ transform: [{ scale: 1.04 }] }}
-              >
-                Schedule Demo
-              </Button>
+              <Navigate to="https://wa.me/5551999999999" blank>
+                <Button
+                  schema="foreground"
+                  size={select({
+                    mobile: "md",
+                    tablet: "lg",
+                    desktop: "lg",
+                  })}
+                  hover={{ transform: [{ scale: 1.04 }] }}
+                >
+                  Schedule Demo
+                </Button>
+              </Navigate>
             </Center>
           </Container>
 
@@ -646,6 +759,14 @@ export const HomePage = () => {
                         to: "/admin-dashboard",
                         label: "Admin Dashboard",
                       },
+                      {
+                        to: "/self-service-kiosk",
+                        label: "Self-Service Kiosk",
+                      },
+                      {
+                        to: "/desktop-pos",
+                        label: "Desktop POS",
+                      },
                     ],
                   },
                   {
@@ -683,10 +804,6 @@ export const HomePage = () => {
                       {
                         to: "/cookie-policy",
                         label: "Cookie Policy",
-                      },
-                      {
-                        to: "/blog",
-                        label: "Blog",
                       },
                     ],
                   },
@@ -753,25 +870,29 @@ export const HomePage = () => {
                   © 2024 BeWise. All rights reserved.
                 </Text>
                 <Box display="flex" fDir="row" items="center" gap={8}>
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    icon={{
-                      name: "Instagram",
-                      color: "$background",
-                      fill: "$foreground",
-                    }}
-                  />
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    icon={{
-                      name: "Twitter",
-                      color: "$background",
-                      fill: "$foreground",
-                      size: 20,
-                    }}
-                  />
+                  <Navigate to="https://www.instagram.com" blank>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      icon={{
+                        name: "Instagram",
+                        color: "$background",
+                        fill: "$foreground",
+                      }}
+                    />
+                  </Navigate>
+                  <Navigate to="https://x.com" blank>
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      icon={{
+                        name: "Twitter",
+                        color: "$background",
+                        fill: "$foreground",
+                        size: 20,
+                      }}
+                    />
+                  </Navigate>
                 </Box>
               </Box>
             </Box>

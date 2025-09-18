@@ -16,6 +16,7 @@ import { JustifyContent } from "@bewise/ui/type/JustifyContent";
 import { Layout } from "@bewise/ui/type/Layout";
 import { Opacity } from "@bewise/ui/type/Opacity";
 import { Position } from "@bewise/ui/type/Position";
+import { ResizeMode } from "@bewise/ui/type/ResizeMode";
 import { Size } from "@bewise/ui/type/Size";
 import { Transform } from "@bewise/ui/type/Transform";
 import { Transition } from "@bewise/ui/type/Transition";
@@ -27,6 +28,9 @@ export type BoxStyle = {
   bc?: ColorVariable | Color;
   bfv?: BackfaceVisibility;
   bg?: ColorVariable | Color;
+  bgImage?: string;
+  bgPosition?: string;
+  bgResizeMode?: ResizeMode;
   blc?: ColorVariable | Color;
   blRadius?: number;
   bls?: BorderStyle;
