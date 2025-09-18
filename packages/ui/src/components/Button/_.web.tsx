@@ -14,6 +14,9 @@ import { ButtonProps } from "./Props";
 
 export const _Button = ({
   id,
+  ariaLabel,
+  ariaExpanded,
+  ariaControls,
   hover,
   onPress,
   startContent,
@@ -48,6 +51,9 @@ export const _Button = ({
   return (
     <button
       id={id}
+      aria-label={ariaLabel}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
       style={transition}
       onClick={onPress}
       onMouseOver={() => setHovering(true)}

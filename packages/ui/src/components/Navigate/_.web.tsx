@@ -9,6 +9,7 @@ import { NavigateProps } from "./Props";
 
 export const _Navigate = ({
   id,
+  ariaCurrent,
   to,
   type,
   hover,
@@ -26,6 +27,7 @@ export const _Navigate = ({
   return (
     <Link
       id={id}
+      aria-current={ariaCurrent}
       style={{
         cursor: "pointer",
         textDecoration: "none",
@@ -34,6 +36,7 @@ export const _Navigate = ({
       }}
       href={to}
       target={blank ? "_blank" : undefined}
+      rel={blank ? "noopener noreferrer" : undefined}
       onMouseOver={() => setHovering(true)}
       onMouseOut={() => setHovering(false)}
       replace={type === "replace"}

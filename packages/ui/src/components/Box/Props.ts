@@ -103,6 +103,8 @@ export type BoxStyleProps = BoxStyle;
 
 export type BoxProps = BoxStyleProps & {
   id?: string;
+  as?: "div" | "header" | "nav" | "section" | "footer";
+  ariaLabelledBy?: string;
   hover?: BoxStyleProps;
   onPress?: () => void;
   onLayout?: (layout: Layout) => void;

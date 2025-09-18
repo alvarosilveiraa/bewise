@@ -9,6 +9,8 @@ import { BoxProps } from "./Props";
 
 export const _Box = ({
   id,
+  as,
+  ariaLabelledBy,
   onPress,
   onLayout,
   onLayoutChange,
@@ -21,14 +23,61 @@ export const _Box = ({
   const transition = useTransition(style);
   useLayout({ ref, onLayout, onLayoutChange });
 
-  return (
-    <div
-      ref={ref}
-      id={id}
-      style={transition}
-      onClick={disabled ? undefined : onPress}
-    >
-      {children}
-    </div>
-  );
+  return {
+    div: (
+      <div
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={transition}
+        onClick={disabled ? undefined : onPress}
+      >
+        {children}
+      </div>
+    ),
+    header: (
+      <header
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={transition}
+        onClick={disabled ? undefined : onPress}
+      >
+        {children}
+      </header>
+    ),
+    nav: (
+      <nav
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={transition}
+        onClick={disabled ? undefined : onPress}
+      >
+        {children}
+      </nav>
+    ),
+    section: (
+      <section
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={transition}
+        onClick={disabled ? undefined : onPress}
+      >
+        {children}
+      </section>
+    ),
+    footer: (
+      <footer
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={transition}
+        onClick={disabled ? undefined : onPress}
+      >
+        {children}
+      </footer>
+    ),
+  }[as!];
 };

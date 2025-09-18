@@ -8,6 +8,9 @@ export type ButtonStyleProps = BoxStyle & TextStyle;
 
 export type ButtonProps = ButtonStyleProps & {
   id?: string;
+  ariaLabel?: string;
+  ariaExpanded?: boolean;
+  ariaControls?: string;
   schema?: keyof ThemeColorsConfig;
   variant?: "solid" | "flat" | "outline" | "ghost";
   size?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";

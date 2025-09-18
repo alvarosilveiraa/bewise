@@ -73,6 +73,9 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               </Header>
             ) : (
               <Button
+                id={`accordion-${index}`}
+                ariaExpanded={expanded}
+                ariaControls={`panel-${index}`}
                 variant={expanded ? "solid" : "outline"}
                 size="xl"
                 justify="space-between"
@@ -89,6 +92,8 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               </Button>
             )}
             <Motion
+              id={`panel-${index}`}
+              ariaLabelledBy={`accordion-${index}`}
               overflow={false}
               opacity={0}
               btw={0}

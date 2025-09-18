@@ -21,7 +21,7 @@ import { useThemeContext } from "@bewise/ui/providers/Theme/useContext";
 
 export const HomePage = () => {
   const safeArea = useSafeArea();
-  const { themeMode, toggleThemeMode } = useThemeContext();
+  const { themeMode, inverseThemeMode, toggleThemeMode } = useThemeContext();
   const { setupBreakpoint } = useBreakpointContext();
   const { select, eq } = setupBreakpoint({
     section1: { max: 850 },
@@ -30,6 +30,7 @@ export const HomePage = () => {
   return (
     <>
       <Container
+        as="header"
         fDir="row"
         items="center"
         justify="space-between"
@@ -41,12 +42,14 @@ export const HomePage = () => {
       >
         <Box display="flex" fDir="row" items="center" gap={8}>
           <Image
+            alt="Icon"
             w={32}
             h={32}
             src="https://api.bewise.app/storage/assets/icon.png"
             hidden={!eq("mobile")}
           />
           <Image
+            alt="Logo"
             w={80}
             h={17}
             src={
@@ -64,6 +67,7 @@ export const HomePage = () => {
             </Button>
           </Navigate>
           <Button
+            ariaLabel={`Change theme to ${inverseThemeMode}`}
             variant="flat"
             onPress={toggleThemeMode}
             icon={{
@@ -83,7 +87,12 @@ export const HomePage = () => {
         bgResizeMode="cover"
       >
         <Box display="flex" w="100%">
-          <Container px={32} py={96}>
+          <Container
+            as="section"
+            ariaLabelledBy="section1-title"
+            px={32}
+            py={96}
+          >
             <Box
               display="flex"
               fDir="row"
@@ -114,6 +123,7 @@ export const HomePage = () => {
                   Complete Restaurant Solutions
                 </Text>
                 <Text
+                  id="section1-title"
                   as="h1"
                   fontSize={select({
                     xs: 24,
@@ -185,15 +195,23 @@ export const HomePage = () => {
                 h={280}
                 radius={12}
                 src="https://api.bewise.app/storage/assets/all-in-one.webp"
+                priority
               />
             </Box>
           </Container>
 
           <Divider />
 
-          <Container gap={32} px={32} py={96}>
+          <Container
+            as="section"
+            ariaLabelledBy="section2-title"
+            gap={32}
+            px={32}
+            py={96}
+          >
             <Center gap={12}>
               <Text
+                id="section2-title"
                 as="h2"
                 fontSize={select({
                   mobile: 24,
@@ -376,9 +394,16 @@ export const HomePage = () => {
 
           <Divider />
 
-          <Container gap={32} px={32} py={96}>
+          <Container
+            as="section"
+            ariaLabelledBy="section3-title"
+            gap={32}
+            px={32}
+            py={96}
+          >
             <Center gap={12}>
               <Text
+                id="section3-title"
                 as="h2"
                 fontSize={select({
                   mobile: 24,
@@ -488,10 +513,16 @@ export const HomePage = () => {
 
           <Divider />
 
-          <Container px={32} py={96}>
+          <Container
+            as="section"
+            ariaLabelledBy="section4-title"
+            px={32}
+            py={96}
+          >
             <Center gap={24}>
               <Center gap={12}>
                 <Text
+                  id="section4-title"
                   as="h2"
                   fontSize={select({
                     mobile: 24,
@@ -532,6 +563,7 @@ export const HomePage = () => {
                   blank
                 >
                   <Image
+                    alt="Lennoxs"
                     w={87}
                     h={19}
                     src="https://api.bewise.app/storage/assets/lennoxs.svg"
@@ -544,6 +576,7 @@ export const HomePage = () => {
                   blank
                 >
                   <Image
+                    alt="In N' Out"
                     w={126}
                     h={26}
                     resizeMode="contain"
@@ -556,9 +589,16 @@ export const HomePage = () => {
 
           <Divider />
 
-          <Container maxW={800} px={32} py={96}>
+          <Container
+            as="section"
+            ariaLabelledBy="section5-title"
+            maxW={800}
+            px={32}
+            py={96}
+          >
             <Box display="flex" gap={32}>
               <Text
+                id="section5-title"
                 as="h2"
                 fontSize={select({
                   mobile: 24,
@@ -620,7 +660,12 @@ export const HomePage = () => {
 
           <Divider />
 
-          <Container px={32} py={96}>
+          <Container
+            as="section"
+            ariaLabelledBy="section6-title"
+            px={32}
+            py={96}
+          >
             <Box
               display="flex"
               fDir="row"
@@ -643,7 +688,8 @@ export const HomePage = () => {
                 minW={select({ section1: undefined }, 400)}
               >
                 <Text
-                  as="h1"
+                  id="section6-title"
+                  as="h2"
                   fontSize={select({
                     mobile: 28,
                     tablet: 32,
@@ -674,10 +720,17 @@ export const HomePage = () => {
             </Box>
           </Container>
 
-          <Container px={32} py={64} bg="$accent.50">
+          <Container
+            as="section"
+            ariaLabelledBy="section7-title"
+            px={32}
+            py={64}
+            bg="$accent.50"
+          >
             <Center gap={32}>
               <Box display="flex" gap={12}>
                 <Text
+                  id="section7-title"
                   as="h2"
                   fontSize={select({
                     mobile: 24,
@@ -722,6 +775,7 @@ export const HomePage = () => {
           </Container>
 
           <Container
+            as="footer"
             px={32}
             py={96}
             pb={safeArea.bottom ? safeArea.bottom + 96 : undefined}
@@ -733,6 +787,7 @@ export const HomePage = () => {
                 cols={select({ mobile: 1 }, 4)}
                 data={[
                   {
+                    alt: "Logo",
                     src:
                       themeMode === ThemeModeEnum.Light
                         ? "https://api.bewise.app/storage/assets/logo-light.svg"
@@ -818,7 +873,13 @@ export const HomePage = () => {
                     gap={12}
                     w="100%"
                   >
-                    <Image w={80} h={17} src={item.src} hidden={!item.src} />
+                    <Image
+                      w={80}
+                      h={17}
+                      alt={item.alt}
+                      src={item.src}
+                      hidden={!item.src}
+                    />
                     <Text
                       fontFamily="Ubuntu"
                       fontSize={14}
@@ -829,14 +890,14 @@ export const HomePage = () => {
                       {item.description}
                     </Text>
                     <Box display="flex" gap={18}>
-                      <Text as="h4" hidden={!item.section}>
+                      <Text fontSize={14} hidden={!item.section}>
                         {item.section}
                       </Text>
                       <Box display="flex" gap={12}>
                         {item.links?.map(({ to, label }, index) => (
                           <Link
                             key={`link-${index}`}
-                            fontSize={12}
+                            fontSize={14}
                             opacity="$hover"
                             textDecorationLine="none"
                             transition={{ duration: 200 }}
@@ -872,6 +933,7 @@ export const HomePage = () => {
                 <Box display="flex" fDir="row" items="center" gap={8}>
                   <Navigate to="https://www.instagram.com" blank>
                     <Button
+                      ariaLabel="Instagram"
                       variant="ghost"
                       size="lg"
                       icon={{
@@ -883,6 +945,7 @@ export const HomePage = () => {
                   </Navigate>
                   <Navigate to="https://x.com" blank>
                     <Button
+                      ariaLabel="Twitter"
                       variant="ghost"
                       size="lg"
                       icon={{

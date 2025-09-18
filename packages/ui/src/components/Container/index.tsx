@@ -2,6 +2,8 @@ import { Box } from "../Box";
 import { ContainerProps } from "./Props";
 
 export const Container = ({
+  as,
+  ariaLabelledBy,
   position,
   top,
   left,
@@ -22,6 +24,8 @@ export const Container = ({
   ...props
 }: ContainerProps) => (
   <Box
+    as={as}
+    ariaLabelledBy={ariaLabelledBy}
     position={position}
     top={top}
     left={left}
