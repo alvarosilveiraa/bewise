@@ -79,7 +79,7 @@ export const Button = ({
         {
           solid: "$divider",
           flat: "transparent",
-          outline: "$divider",
+          outline: `$${schema}`,
           ghost: "transparent",
         }[variant] as Color | ColorVariable
       }

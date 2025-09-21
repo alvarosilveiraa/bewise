@@ -3,6 +3,7 @@ import { useLayout } from "@bewise/ui/hooks/useLayout";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
+import { isFunction } from "lodash";
 import { TouchableWithoutFeedback, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { BoxProps } from "./Props";
@@ -21,26 +22,31 @@ export const _Box = ({
   const transition = useTransition(style);
   const { handleLayoutChange } = useLayout({ ref, onLayout, onLayoutChange });
 
+  const renderChildren = useCallback(() => {
+    if (isFunction(children)) return children({});
+    return children;
+  }, [children]);
+
   if (!style.transition) {
-    const renderChildren = useCallback(
+    const renderView = useCallback(
       () => (
         <View ref={ref} id={id} style={style} onLayout={handleLayoutChange}>
-          {children}
+          {renderChildren()}
         </View>
       ),
-      [id, children, ref, style, handleLayoutChange],
+      [id, ref, style, handleLayoutChange, renderChildren],
     );
 
     if (onPress)
       return (
         <TouchableWithoutFeedback onPress={onPress} disabled={disabled}>
-          {renderChildren()}
+          {renderView()}
         </TouchableWithoutFeedback>
       );
-    return renderChildren();
+    return renderView();
   }
 
-  const renderAnimatedChildren = useCallback(
+  const renderAnimatedView = useCallback(
     () => (
       <Animated.View
         ref={ref}
@@ -48,10 +54,10 @@ export const _Box = ({
         style={[style, transition]}
         onLayout={handleLayoutChange}
       >
-        {children}
+        {renderChildren()}
       </Animated.View>
     ),
-    [id, children, ref, style, transition, handleLayoutChange],
+    [id, ref, style, transition, handleLayoutChange, renderChildren],
   );
 
   if (onPress)
@@ -61,8 +67,8 @@ export const _Box = ({
         onLayout={handleLayoutChange}
         disabled={disabled}
       >
-        {renderAnimatedChildren()}
+        {renderAnimatedView()}
       </TouchableWithoutFeedback>
     );
-  return renderAnimatedChildren();
+  return renderAnimatedView();
 };

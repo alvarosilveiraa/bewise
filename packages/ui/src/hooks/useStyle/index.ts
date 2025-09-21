@@ -147,6 +147,7 @@ export const useStyle = <S extends object = Record<string, unknown>>(
       brc: colorMapper(style?.brc),
       btc: colorMapper(style?.btc),
       color: colorMapper(style?.color),
+      colorGradient: style?.colorGradient?.map(colorMapper),
       fill: colorMapper(style?.fill),
       fontFamily: fontFamilyMapper(style?.fontFamily),
       fontSize: fontSizeMapper(style?.fontSize),

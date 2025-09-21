@@ -1,5 +1,6 @@
 export const TEXT_STYLE_PROPS = [
   "color",
+  "colorGradient",
   "fontFamily",
   "fontSize",
   "fontStyle",

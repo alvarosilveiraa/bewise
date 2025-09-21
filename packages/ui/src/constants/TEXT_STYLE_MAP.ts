@@ -1,5 +1,8 @@
+import { colorGradientMapper } from "../mappers/colorGradient";
+
 export const TEXT_STYLE_MAP = {
   color: "color",
+  colorGradient: colorGradientMapper,
   fontFamily: "fontFamily",
   fontSize: "fontSize",
   fontStyle: "fontStyle",

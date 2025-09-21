@@ -109,7 +109,8 @@ export type BoxProps = BoxStyleProps & {
   onPress?: () => void;
   onLayout?: (layout: Layout) => void;
   onLayoutChange?: (layout: Layout) => void;
+  hovering?: boolean;
   disabled?: boolean;
   hidden?: boolean;
-  children?: ReactNode;
+  children?: ReactNode | ((props: { hovering?: boolean }) => ReactNode);
 };

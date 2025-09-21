@@ -1,4 +1,6 @@
+import { useCallback } from "react";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
+import { isFunction } from "lodash";
 import { ScrollView, ViewStyle } from "react-native";
 import { ScrollProps } from "./Props";
 
@@ -40,6 +42,11 @@ export const _Scroll = ({
     pb,
   });
 
+  const renderChildren = useCallback(() => {
+    if (isFunction(children)) return children({});
+    return children;
+  }, [children]);
+
   if (overflow || (overflowX && overflowY))
     return (
       <ScrollView
@@ -50,7 +57,7 @@ export const _Scroll = ({
         horizontal
       >
         <ScrollView contentContainerStyle={contentContainerStyle}>
-          {children}
+          {renderChildren()}
         </ScrollView>
       </ScrollView>
     );
@@ -60,7 +67,7 @@ export const _Scroll = ({
       contentContainerStyle={contentContainerStyle}
       horizontal={overflowX}
     >
-      {children}
+      {renderChildren()}
     </ScrollView>
   );
 };

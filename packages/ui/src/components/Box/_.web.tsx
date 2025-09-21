@@ -1,16 +1,19 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
+import { useHover } from "@bewise/ui/hooks/useHover";
 import { useLayout } from "@bewise/ui/hooks/useLayout";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
+import { isFunction } from "lodash";
 import { BoxProps } from "./Props";
 
 export const _Box = ({
   id,
   as,
   ariaLabelledBy,
+  hover,
   onPress,
   onLayout,
   onLayoutChange,
@@ -19,9 +22,19 @@ export const _Box = ({
   ...props
 }: BoxProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const style = useStyle(props, boxStyleMapper);
+  const { hovering, hoverProps, onMouseOver, onMouseOut } = useHover(
+    props,
+    hover,
+    disabled,
+  );
+  const style = useStyle(hoverProps, boxStyleMapper);
   const transition = useTransition(style);
   useLayout({ ref, onLayout, onLayoutChange });
+
+  const renderChildren = useCallback(() => {
+    if (isFunction(children)) return children({ hovering });
+    return children;
+  }, [children, hovering]);
 
   return {
     div: (
@@ -31,8 +44,10 @@ export const _Box = ({
         aria-labelledby={ariaLabelledBy}
         style={transition}
         onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
       >
-        {children}
+        {renderChildren()}
       </div>
     ),
     header: (
@@ -42,8 +57,10 @@ export const _Box = ({
         aria-labelledby={ariaLabelledBy}
         style={transition}
         onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
       >
-        {children}
+        {renderChildren()}
       </header>
     ),
     nav: (
@@ -53,8 +70,10 @@ export const _Box = ({
         aria-labelledby={ariaLabelledBy}
         style={transition}
         onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
       >
-        {children}
+        {renderChildren()}
       </nav>
     ),
     section: (
@@ -64,8 +83,10 @@ export const _Box = ({
         aria-labelledby={ariaLabelledBy}
         style={transition}
         onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
       >
-        {children}
+        {renderChildren()}
       </section>
     ),
     footer: (
@@ -75,8 +96,10 @@ export const _Box = ({
         aria-labelledby={ariaLabelledBy}
         style={transition}
         onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
       >
-        {children}
+        {renderChildren()}
       </footer>
     ),
   }[as!];

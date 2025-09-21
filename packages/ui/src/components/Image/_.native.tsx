@@ -6,5 +6,11 @@ export const _Image = ({ id, src, ...props }: ImageProps) => {
   const style = useStyle<ImageStyle>(props);
 
   if (!src) return null;
-  return <Image id={id} style={style} source={{ uri: src }} />;
+  return (
+    <Image
+      id={id}
+      style={{ maxWidth: "100%", ...style }}
+      source={{ uri: src }}
+    />
+  );
 };

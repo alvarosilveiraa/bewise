@@ -28,7 +28,11 @@ export const _Button = ({
   children,
   ...props
 }: ButtonProps) => {
-  const { setHovering, hoverProps } = useHover(props, hover, disabled);
+  const { hoverProps, onMouseOver, onMouseOut } = useHover(
+    props,
+    hover,
+    disabled,
+  );
   const style = useStyle(hoverProps, boxStyleMapper);
   const transition = useTransition(style);
   const { textStyleProps } = useStyleProps(hoverProps);
@@ -56,8 +60,8 @@ export const _Button = ({
       aria-controls={ariaControls}
       style={transition}
       onClick={onPress}
-      onMouseOver={() => setHovering(true)}
-      onMouseOut={() => setHovering(false)}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
       disabled={disabled}
     >
       {startContent}

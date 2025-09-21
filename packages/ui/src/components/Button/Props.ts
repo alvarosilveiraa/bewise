@@ -21,6 +21,7 @@ export type ButtonProps = ButtonStyleProps & {
   endContent?: ReactNode;
   endIcon?: IconProps;
   icon?: IconProps;
+  hovering?: boolean;
   disabled?: boolean;
   hidden?: boolean;
   children?: ReactNode;

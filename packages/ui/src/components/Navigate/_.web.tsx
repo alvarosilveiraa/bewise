@@ -9,6 +9,7 @@ import { NavigateProps } from "./Props";
 
 export const _Navigate = ({
   id,
+  ariaLabel,
   ariaCurrent,
   to,
   type,
@@ -27,6 +28,7 @@ export const _Navigate = ({
   return (
     <Link
       id={id}
+      aria-label={ariaLabel}
       aria-current={ariaCurrent}
       style={{
         cursor: "pointer",

@@ -8,6 +8,8 @@ import { LinkProps } from "./Props";
 
 export const Link = ({
   id,
+  ariaLabel,
+  ariaCurrent,
   to,
   type,
   hover,
@@ -18,14 +20,30 @@ export const Link = ({
 
   if (isString(children))
     return (
-      <Navigate id={id} to={to} type={type} hover={hover} {...boxStyleProps}>
+      <Navigate
+        id={id}
+        ariaLabel={ariaLabel}
+        ariaCurrent={ariaCurrent}
+        to={to}
+        type={type}
+        hover={hover}
+        {...boxStyleProps}
+      >
         <Text textDecorationLine="underline" {...textStyleProps}>
           {children}
         </Text>
       </Navigate>
     );
   return (
-    <Navigate id={id} to={to} type={type} hover={hover} {...boxStyleProps}>
+    <Navigate
+      id={id}
+      ariaLabel={ariaLabel}
+      ariaCurrent={ariaCurrent}
+      to={to}
+      type={type}
+      hover={hover}
+      {...boxStyleProps}
+    >
       {children}
     </Navigate>
   );
