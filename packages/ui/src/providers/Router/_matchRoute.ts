@@ -18,10 +18,11 @@ export const matchRoute = (
     let i = 0;
     let matched = true;
     while (i < routeSegments.length && index + i < segments.length) {
-      const rSeg = routeSegments[i];
-      const pSeg = segments[index + i];
-      if (rSeg.startsWith(":")) nextParams[rSeg.slice(1)] = pSeg;
-      else if (!_matchSegment(rSeg, pSeg)) {
+      const routeSegment = routeSegments[i];
+      const segment = segments[index + i];
+      if (routeSegment.startsWith(":"))
+        nextParams[routeSegment.slice(1)] = segment;
+      else if (!_matchSegment(routeSegment, segment)) {
         matched = false;
         break;
       }

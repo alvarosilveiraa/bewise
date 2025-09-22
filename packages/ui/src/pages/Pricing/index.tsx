@@ -2,4 +2,4 @@
 
 import { Box } from "@bewise/ui/components/Box";
 
-export const PricingPage = () => <Box w="100%" h={400} />;
+export const PricingPage = () => <Box w="100%" flex={1} />;

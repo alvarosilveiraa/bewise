@@ -123,193 +123,191 @@ export const RootLayout = ({ children }: PropsWithChildren) => {
         bgPosition="center"
         bgResizeMode="cover"
       >
-        <Box display="flex" w="100%">
-          {children}
+        {children}
 
-          <Container
-            as="footer"
-            px={32}
-            py={96}
-            pb={safeArea.bottom ? safeArea.bottom + 96 : undefined}
-            bg="$background.50"
-          >
-            <Box display="flex" gap={32}>
-              <Grid
-                gap={24}
-                cols={select({ mobile: 1 }, 4)}
-                data={[
-                  {
-                    alt: "Logo",
-                    src: logoSrc,
-                    description:
-                      "Complete restaurant and delivery systems for the modern food service industry.",
-                  },
-                  {
-                    section: "Solutions",
-                    links: [
-                      {
-                        to: "/mobile-app",
-                        label: "Mobile App",
-                      },
-                      {
-                        to: "/kitchen-display",
-                        label: "Kitchen Display",
-                      },
-                      {
-                        to: "/ordering-website",
-                        label: "Ordering Website",
-                      },
-                      {
-                        to: "/admin-dashboard",
-                        label: "Admin Dashboard",
-                      },
-                      {
-                        to: "/self-service-kiosk",
-                        label: "Self-Service Kiosk",
-                      },
-                      {
-                        to: "/desktop-pos",
-                        label: "Desktop POS",
-                      },
-                    ],
-                  },
-                  {
-                    section: "Support",
-                    links: [
-                      {
-                        to: "/help-center",
-                        label: "Help Center",
-                      },
-                      {
-                        to: "/documentation",
-                        label: "Documentation",
-                      },
-                      {
-                        to: "/contact-support",
-                        label: "Contact Support",
-                      },
-                      {
-                        to: "/system-status",
-                        label: "System Status",
-                      },
-                    ],
-                  },
-                  {
-                    section: "Legal",
-                    links: [
-                      {
-                        to: "/privacy-policy",
-                        label: "Privacy Policy",
-                      },
-                      {
-                        to: "/terms-of-use",
-                        label: "Terms of Use",
-                      },
-                      {
-                        to: "/cookie-policy",
-                        label: "Cookie Policy",
-                      },
-                    ],
-                  },
-                ]}
-                Item={({ item }) => (
-                  <Box
-                    display="flex"
-                    items={select(
-                      { mobile: "flex-start" },
-                      item.src ? "flex-start" : "flex-end",
-                    )}
-                    gap={12}
-                    w="100%"
+        <Container
+          as="footer"
+          px={32}
+          py={96}
+          pb={safeArea.bottom ? safeArea.bottom + 96 : undefined}
+          bg="$background.50"
+        >
+          <Box display="flex" gap={32}>
+            <Grid
+              gap={24}
+              cols={select({ mobile: 1 }, 4)}
+              data={[
+                {
+                  alt: "Logo",
+                  src: logoSrc,
+                  description:
+                    "Complete restaurant and delivery systems for the modern food service industry.",
+                },
+                {
+                  section: "Solutions",
+                  links: [
+                    {
+                      to: "/mobile-app",
+                      label: "Mobile App",
+                    },
+                    {
+                      to: "/kitchen-display",
+                      label: "Kitchen Display",
+                    },
+                    {
+                      to: "/ordering-website",
+                      label: "Ordering Website",
+                    },
+                    {
+                      to: "/admin-dashboard",
+                      label: "Admin Dashboard",
+                    },
+                    {
+                      to: "/self-service-kiosk",
+                      label: "Self-Service Kiosk",
+                    },
+                    {
+                      to: "/desktop-pos",
+                      label: "Desktop POS",
+                    },
+                  ],
+                },
+                {
+                  section: "Support",
+                  links: [
+                    {
+                      to: "/help-center",
+                      label: "Help Center",
+                    },
+                    {
+                      to: "/documentation",
+                      label: "Documentation",
+                    },
+                    {
+                      to: "/contact-support",
+                      label: "Contact Support",
+                    },
+                    {
+                      to: "/system-status",
+                      label: "System Status",
+                    },
+                  ],
+                },
+                {
+                  section: "Legal",
+                  links: [
+                    {
+                      to: "/privacy-policy",
+                      label: "Privacy Policy",
+                    },
+                    {
+                      to: "/terms-of-use",
+                      label: "Terms of Use",
+                    },
+                    {
+                      to: "/cookie-policy",
+                      label: "Cookie Policy",
+                    },
+                  ],
+                },
+              ]}
+              Item={({ item }) => (
+                <Box
+                  display="flex"
+                  items={select(
+                    { mobile: "flex-start" },
+                    item.src ? "flex-start" : "flex-end",
+                  )}
+                  gap={12}
+                  w="100%"
+                >
+                  <Image
+                    w={80}
+                    h={17}
+                    alt={item.alt}
+                    src={item.src}
+                    hidden={!item.src}
+                  />
+                  <Text
+                    fontFamily="Ubuntu"
+                    fontSize={14}
+                    fontWeight="400"
+                    color="$foreground.100"
+                    hidden={!item.description}
                   >
-                    <Image
-                      w={80}
-                      h={17}
-                      alt={item.alt}
-                      src={item.src}
-                      hidden={!item.src}
-                    />
-                    <Text
-                      fontFamily="Ubuntu"
-                      fontSize={14}
-                      fontWeight="400"
-                      color="$foreground.100"
-                      hidden={!item.description}
-                    >
-                      {item.description}
+                    {item.description}
+                  </Text>
+                  <Box display="flex" gap={18}>
+                    <Text fontSize={14} hidden={!item.section}>
+                      {item.section}
                     </Text>
-                    <Box display="flex" gap={18}>
-                      <Text fontSize={14} hidden={!item.section}>
-                        {item.section}
-                      </Text>
-                      <Box display="flex" gap={12}>
-                        {item.links?.map(({ to, label }, index) => (
-                          <Link
-                            key={`link-${index}`}
-                            fontSize={14}
-                            opacity="$hover"
-                            textDecorationLine="none"
-                            transition={{ duration: 200 }}
-                            hover={{ opacity: 1 }}
-                            to={to}
-                            blank
-                          >
-                            {label}
-                          </Link>
-                        ))}
-                      </Box>
+                    <Box display="flex" gap={12}>
+                      {item.links?.map(({ to, label }, index) => (
+                        <Link
+                          key={`link-${index}`}
+                          fontSize={14}
+                          opacity="$hover"
+                          textDecorationLine="none"
+                          transition={{ duration: 200 }}
+                          hover={{ opacity: 1 }}
+                          to={to}
+                          blank
+                        >
+                          {label}
+                        </Link>
+                      ))}
                     </Box>
                   </Box>
-                )}
-              />
-              <Divider />
-              <Box
-                display="flex"
-                fDir={select({ mobile: "column" }, "row")}
-                items="center"
-                justify={select({ mobile: "center" }, "space-between")}
-                gap={24}
-              >
-                <Text
-                  fontFamily="Ubuntu"
-                  fontSize={14}
-                  fontWeight="400"
-                  textAlign={select({ mobile: "center" }, "left")}
-                  color="$foreground.100"
-                >
-                  © 2024 BeWise. All rights reserved.
-                </Text>
-                <Box display="flex" fDir="row" items="center" gap={8}>
-                  <Navigate to="https://www.instagram.com" blank>
-                    <Button
-                      ariaLabel="Instagram"
-                      variant="ghost"
-                      size="lg"
-                      icon={{
-                        name: "Instagram",
-                        color: "$background",
-                        fill: "$foreground",
-                      }}
-                    />
-                  </Navigate>
-                  <Navigate to="https://x.com" blank>
-                    <Button
-                      ariaLabel="Twitter"
-                      variant="ghost"
-                      size="lg"
-                      icon={{
-                        name: "Twitter",
-                        color: "$background",
-                        fill: "$foreground",
-                        size: 20,
-                      }}
-                    />
-                  </Navigate>
                 </Box>
+              )}
+            />
+            <Divider />
+            <Box
+              display="flex"
+              fDir={select({ mobile: "column" }, "row")}
+              items="center"
+              justify={select({ mobile: "center" }, "space-between")}
+              gap={24}
+            >
+              <Text
+                fontFamily="Ubuntu"
+                fontSize={14}
+                fontWeight="400"
+                textAlign={select({ mobile: "center" }, "left")}
+                color="$foreground.100"
+              >
+                © 2024 BeWise. All rights reserved.
+              </Text>
+              <Box display="flex" fDir="row" items="center" gap={8}>
+                <Navigate to="https://www.instagram.com" blank>
+                  <Button
+                    ariaLabel="Instagram"
+                    variant="ghost"
+                    size="lg"
+                    icon={{
+                      name: "Instagram",
+                      color: "$background",
+                      fill: "$foreground",
+                    }}
+                  />
+                </Navigate>
+                <Navigate to="https://x.com" blank>
+                  <Button
+                    ariaLabel="Twitter"
+                    variant="ghost"
+                    size="lg"
+                    icon={{
+                      name: "Twitter",
+                      color: "$background",
+                      fill: "$foreground",
+                      size: 20,
+                    }}
+                  />
+                </Navigate>
               </Box>
             </Box>
-          </Container>
-        </Box>
+          </Box>
+        </Container>
       </Scroll>
     </>
   );

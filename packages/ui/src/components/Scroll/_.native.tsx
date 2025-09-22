@@ -29,7 +29,7 @@ export const _Scroll = ({
   });
   const contentContainerStyle = useStyle<ViewStyle>({
     fGrow,
-    fDir: fDir || fGrow ? "column" : undefined,
+    fDir: fDir || (fGrow ? "column" : undefined),
     items,
     justify,
     gap,
