@@ -1,7 +1,6 @@
 import { useCallback, useRef } from "react";
 import { useLayout } from "@bewise/ui/hooks/useLayout";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
-import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
 import { isFunction } from "lodash";
 import { TouchableWithoutFeedback, View } from "react-native";
@@ -19,7 +18,6 @@ export const _Box = ({
 }: BoxProps) => {
   const ref = useRef<View>(null);
   const style = useStyle(props, boxStyleMapper);
-  const transition = useTransition(style);
   const { handleLayoutChange } = useLayout({ ref, onLayout, onLayoutChange });
 
   const renderChildren = useCallback(() => {
@@ -51,13 +49,13 @@ export const _Box = ({
       <Animated.View
         ref={ref}
         id={id}
-        style={[style, transition]}
+        style={[style, style]}
         onLayout={handleLayoutChange}
       >
         {renderChildren()}
       </Animated.View>
     ),
-    [id, ref, style, transition, handleLayoutChange, renderChildren],
+    [id, ref, style, style, handleLayoutChange, renderChildren],
   );
 
   if (onPress)

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Accordion } from "@bewise/ui/components/Accordion";
 import { Box } from "@bewise/ui/components/Box";
 import { Button } from "@bewise/ui/components/Button";
@@ -10,13 +11,16 @@ import { Grid } from "@bewise/ui/components/Grid";
 import { Icon } from "@bewise/ui/components/Icon";
 import { IconName } from "@bewise/ui/components/Icon/Props";
 import { Image } from "@bewise/ui/components/Image";
+import { Modal } from "@bewise/ui/components/Modal";
 import { Navigate } from "@bewise/ui/components/Navigate";
 import { Text } from "@bewise/ui/components/Text";
+import { PlatformEnum } from "@bewise/ui/enums/Platform";
 import { useBreakpointContext } from "@bewise/ui/providers/Breakpoint/useContext";
 
 export const HomePage = () => {
   const { setupBreakpoint } = useBreakpointContext();
   const { select } = setupBreakpoint();
+  const [modalOpen, setModalOpen] = useState(true);
 
   return (
     <>
@@ -257,7 +261,7 @@ export const HomePage = () => {
                 bs="solid"
                 radius={6}
                 hover={{ bg: "$background.50", bc: "$accent" }}
-                transition={{ duration: 200 }}
+                transition={{ duration: 200, platforms: [PlatformEnum.Web] }}
               >
                 {({ hovering }) => (
                   <>
@@ -268,7 +272,10 @@ export const HomePage = () => {
                       radius={6}
                       hover={{ bg: "$default/0.4" }}
                       hovering={hovering}
-                      transition={{ duration: 200 }}
+                      transition={{
+                        duration: 200,
+                        platforms: [PlatformEnum.Web],
+                      }}
                     >
                       <Icon name={item.icon as IconName} size={24} />
                     </Box>
@@ -614,21 +621,26 @@ export const HomePage = () => {
               integrated solutions can make
             </Text>
           </Box>
-          <Navigate to="https://wa.me/5551999999999" blank>
-            <Button
-              schema="foreground"
-              size={select({
-                mobile: "md",
-                tablet: "lg",
-                desktop: "lg",
-              })}
-              hover={{ transform: [{ scale: 1.04 }] }}
-            >
-              Schedule Demo
-            </Button>
-          </Navigate>
+          {/* <Navigate to="https://wa.me/5551999999999" blank> */}
+          <Button
+            schema="foreground"
+            size={select({
+              mobile: "md",
+              tablet: "lg",
+              desktop: "lg",
+            })}
+            hover={{ transform: [{ scale: 1.04 }] }}
+            onPress={() => setModalOpen(true)}
+          >
+            Schedule Demo
+          </Button>
+          {/* </Navigate> */}
         </Center>
       </Container>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <Text>ASHUDHAS</Text>
+        <Text>ASHUDHAS</Text>
+      </Modal>
     </>
   );
 };

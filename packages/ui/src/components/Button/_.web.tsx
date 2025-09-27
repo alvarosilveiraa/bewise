@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import { useHover } from "@bewise/ui/hooks/useHover";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { useStyleProps } from "@bewise/ui/hooks/useStyleProps";
-import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
 import { isString } from "lodash";
 import { Icon } from "../Icon";
@@ -34,7 +33,6 @@ export const _Button = ({
     disabled,
   );
   const style = useStyle(hoverProps, boxStyleMapper);
-  const transition = useTransition(style);
   const { textStyleProps } = useStyleProps(hoverProps);
   const textStyle = useStyle(textStyleProps);
 
@@ -58,7 +56,7 @@ export const _Button = ({
       aria-label={ariaLabel}
       aria-expanded={ariaExpanded}
       aria-controls={ariaControls}
-      style={transition}
+      style={style}
       onClick={onPress}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}

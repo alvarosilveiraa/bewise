@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { EasingEnum } from "@bewise/ui/enums/Easing";
 import { Box } from "../Box";
 import { Button } from "../Button";
@@ -8,7 +9,7 @@ import { Motion } from "../Motion";
 import { Text } from "../Text";
 import { AccordionProps } from "./Props";
 
-export const Accordion = <I extends object = Record<string, unknown>>({
+export const Accordion = <I extends RecordUnknown = RecordUnknown>({
   data = [],
   Header,
   Title,

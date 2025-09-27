@@ -11,6 +11,7 @@ export type MotionProps = MotionStyleProps & {
   initial?: MotionStyleProps;
   animate?: MotionStyleProps;
   transition?: Omit<Transition, "key">;
+  onPress?: () => void;
   children?: ReactNode;
   hidden?: boolean;
 };

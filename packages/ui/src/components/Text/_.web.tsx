@@ -2,12 +2,10 @@
 
 import { CSSProperties, useMemo } from "react";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
-import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { TextProps } from "./Props";
 
 export const _Text = ({ id, as, lines, children, ...props }: TextProps) => {
   const style = useStyle(props);
-  const transition = useTransition(style);
   const whiteSpace = useMemo(
     () => "pre-wrap" as CSSProperties["whiteSpace"],
     [],
@@ -28,12 +26,12 @@ export const _Text = ({ id, as, lines, children, ...props }: TextProps) => {
   }, [lines]);
   const extendedStyle = useMemo(
     () => ({
-      ...transition,
+      ...style,
       ...ellipsis,
       whiteSpace,
       wordBreak,
     }),
-    [transition, ellipsis, whiteSpace, wordBreak],
+    [style, ellipsis, whiteSpace, wordBreak],
   );
 
   return {

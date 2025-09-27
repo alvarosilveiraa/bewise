@@ -12,6 +12,7 @@ import { Link } from "@bewise/ui/components/Link";
 import { Navigate } from "@bewise/ui/components/Navigate";
 import { Scroll } from "@bewise/ui/components/Scroll";
 import { Text } from "@bewise/ui/components/Text";
+import { PlatformEnum } from "@bewise/ui/enums/Platform";
 import { useSafeArea } from "@bewise/ui/hooks/useSafeArea";
 import { useBreakpointContext } from "@bewise/ui/providers/Breakpoint/useContext";
 import { useRouterContext } from "@bewise/ui/providers/Router/useContext";
@@ -87,7 +88,7 @@ export const RootLayout = ({ children }: PropsWithChildren) => {
                 fontWeight="600"
                 textDecorationLine="none"
                 hover={{ opacity: current ? 0.6 : 1 }}
-                transition={{ duration: 200 }}
+                transition={{ duration: 200, platforms: [PlatformEnum.Web] }}
                 to={to}
               >
                 {label}
@@ -248,8 +249,11 @@ export const RootLayout = ({ children }: PropsWithChildren) => {
                           fontSize={14}
                           opacity="$hover"
                           textDecorationLine="none"
-                          transition={{ duration: 200 }}
                           hover={{ opacity: 1 }}
+                          transition={{
+                            duration: 200,
+                            platforms: [PlatformEnum.Web],
+                          }}
                           to={to}
                           blank
                         >

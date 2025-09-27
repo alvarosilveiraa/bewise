@@ -1,9 +1,9 @@
 import { useStyle } from "@bewise/ui/hooks/useStyle";
-import { Image, ImageStyle } from "react-native";
+import { Image } from "react-native";
 import { ImageProps } from "./Props";
 
 export const _Image = ({ id, src, ...props }: ImageProps) => {
-  const style = useStyle<ImageStyle>(props);
+  const style = useStyle(props);
 
   if (!src) return null;
   return (

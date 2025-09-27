@@ -1,6 +1,5 @@
 "use client";
 
-import { CSSProperties } from "react";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
 import { isNumber } from "lodash";
 import Image from "next/image";
@@ -14,7 +13,7 @@ export const _Image = ({
   priority,
   ...props
 }: ImageProps) => {
-  const { width, height, ...style } = useStyle<CSSProperties>(props);
+  const { width, height, ...style } = useStyle(props);
 
   if (!src || !isNumber(width) || !isNumber(height)) return null;
   return (

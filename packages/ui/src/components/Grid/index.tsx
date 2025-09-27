@@ -1,8 +1,9 @@
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { Box } from "../Box";
 import { Center } from "../Center";
 import { GridProps } from "./Props";
 
-export const Grid = <I extends object = Record<string, unknown>>({
+export const Grid = <I extends RecordUnknown = RecordUnknown>({
   cols,
   data = [],
   Item,

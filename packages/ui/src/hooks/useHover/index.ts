@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { isBoolean } from "lodash";
 
-export const useHover = <
-  P extends Record<string, unknown> = Record<string, unknown>,
->(
+export const useHover = <P extends RecordUnknown = RecordUnknown>(
   props: P,
   hover?: P,
   disabled?: boolean,

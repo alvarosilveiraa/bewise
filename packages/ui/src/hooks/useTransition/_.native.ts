@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo } from "react";
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { EasingEnum } from "@bewise/ui/enums/Easing";
 import { isDimension } from "@bewise/ui/helpers/isDimension";
 import { Dimension } from "@bewise/ui/type/Dimension";
@@ -54,7 +55,9 @@ const getTransformValue = <V = unknown>(
   return defaultValue;
 };
 
-export const _useTransition = (props: Record<string, unknown>) => {
+export const _useTransition = <P extends RecordUnknown = RecordUnknown>(
+  props: P,
+) => {
   const transition = useMemo(
     () =>
       props.transition as Omit<Transition, "key"> | Transition[] | undefined,
@@ -357,5 +360,5 @@ export const _useTransition = (props: Record<string, unknown>) => {
   });
 
   if (!props.transition) return omit(props, "transition");
-  return animatedStyle as Record<string, unknown>;
+  return animatedStyle as P;
 };

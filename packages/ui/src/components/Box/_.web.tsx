@@ -4,7 +4,6 @@ import { useCallback, useRef } from "react";
 import { useHover } from "@bewise/ui/hooks/useHover";
 import { useLayout } from "@bewise/ui/hooks/useLayout";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
-import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
 import { isFunction } from "lodash";
 import { BoxProps } from "./Props";
@@ -28,7 +27,6 @@ export const _Box = ({
     disabled,
   );
   const style = useStyle(hoverProps, boxStyleMapper);
-  const transition = useTransition(style);
   useLayout({ ref, onLayout, onLayoutChange });
 
   const renderChildren = useCallback(() => {
@@ -42,7 +40,7 @@ export const _Box = ({
         ref={ref}
         id={id}
         aria-labelledby={ariaLabelledBy}
-        style={transition}
+        style={style}
         onClick={disabled ? undefined : onPress}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
@@ -55,7 +53,7 @@ export const _Box = ({
         ref={ref}
         id={id}
         aria-labelledby={ariaLabelledBy}
-        style={transition}
+        style={style}
         onClick={disabled ? undefined : onPress}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
@@ -68,7 +66,7 @@ export const _Box = ({
         ref={ref}
         id={id}
         aria-labelledby={ariaLabelledBy}
-        style={transition}
+        style={style}
         onClick={disabled ? undefined : onPress}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
@@ -81,7 +79,7 @@ export const _Box = ({
         ref={ref}
         id={id}
         aria-labelledby={ariaLabelledBy}
-        style={transition}
+        style={style}
         onClick={disabled ? undefined : onPress}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
@@ -94,7 +92,7 @@ export const _Box = ({
         ref={ref}
         id={id}
         aria-labelledby={ariaLabelledBy}
-        style={transition}
+        style={style}
         onClick={disabled ? undefined : onPress}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}

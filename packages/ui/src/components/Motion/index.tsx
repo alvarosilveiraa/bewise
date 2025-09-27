@@ -11,6 +11,7 @@ export const Motion = ({
   initial,
   animate,
   transition,
+  onPress,
   children,
   hidden,
   ...props
@@ -30,6 +31,7 @@ export const Motion = ({
       ariaLabelledBy={ariaLabelledBy}
       {...style}
       transition={transition}
+      onPress={onPress}
       hidden={hidden}
     >
       {children}

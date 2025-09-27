@@ -1,11 +1,12 @@
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { isFunction } from "lodash";
 import { TextStyle, TextStyleKey } from "../components/Text/Props";
 import { TEXT_STYLE_MAP } from "../constants/TEXT_STYLE_MAP";
 
-export const textStyleMapper = <S extends object = Record<string, unknown>>(
+export const textStyleMapper = <S extends RecordUnknown = RecordUnknown>(
   props: TextStyle,
 ) => {
-  let style: Record<string, unknown> = {};
+  let style: RecordUnknown = {};
   Object.keys(props).forEach(propKey => {
     const value = props[propKey as TextStyleKey];
     const key = TEXT_STYLE_MAP[propKey as TextStyleKey];
