@@ -24,7 +24,12 @@ export const HomePage = () => {
 
   return (
     <>
-      <Container as="section" ariaLabelledBy="section1-title" px={32} py={96}>
+      <Container
+        as="section"
+        ariaLabelledBy="section1-title"
+        px={32}
+        py={select({ mobile: 64, tablet: 82, desktop: 96 })}
+      >
         <Box
           display="flex"
           fDir="row"
@@ -58,8 +63,8 @@ export const HomePage = () => {
               id="section1-title"
               as="h1"
               fontSize={select({
-                xs: 24,
-                sm: 32,
+                xs: 32,
+                sm: 38,
                 md: 44,
                 lg: 52,
                 xl: 64,
@@ -71,8 +76,8 @@ export const HomePage = () => {
               <Text
                 as="span"
                 fontSize={select({
-                  xs: 24,
-                  sm: 32,
+                  xs: 32,
+                  sm: 38,
                   md: 44,
                   lg: 52,
                   xl: 64,
@@ -104,11 +109,7 @@ export const HomePage = () => {
               tools. From mobile ordering to kitchen displays, we've got you
               covered.
             </Text>
-            <Navigate
-              w={select({ mobile: "100%" }, "auto")}
-              to="https://wa.me/5551999999999"
-              blank
-            >
+            <Navigate to="https://wa.me/5551999999999" blank>
               <Button
                 schema="primary"
                 size={select({
@@ -116,7 +117,6 @@ export const HomePage = () => {
                   tablet: "lg",
                   desktop: "lg",
                 })}
-                w="100%"
                 hover={{ transform: [{ scale: 1.04 }] }}
               >
                 Schedule Demo
@@ -140,7 +140,7 @@ export const HomePage = () => {
         ariaLabelledBy="section2-title"
         gap={32}
         px={32}
-        py={96}
+        py={select({ mobile: 64, tablet: 82, desktop: 96 })}
       >
         <Center gap={12}>
           <Text
@@ -343,7 +343,7 @@ export const HomePage = () => {
         ariaLabelledBy="section3-title"
         gap={32}
         px={32}
-        py={96}
+        py={select({ mobile: 64, tablet: 82, desktop: 96 })}
       >
         <Center gap={12}>
           <Text
@@ -460,7 +460,7 @@ export const HomePage = () => {
         ariaLabelledBy="section5-title"
         maxW={800}
         px={32}
-        py={96}
+        py={select({ mobile: 64, tablet: 82, desktop: 96 })}
       >
         <Box display="flex" gap={32}>
           <Text
@@ -526,7 +526,12 @@ export const HomePage = () => {
 
       <Divider />
 
-      <Container as="section" ariaLabelledBy="section6-title" px={32} py={96}>
+      <Container
+        as="section"
+        ariaLabelledBy="section6-title"
+        px={32}
+        py={select({ mobile: 64, tablet: 82, desktop: 96 })}
+      >
         <Box
           display="flex"
           fDir="row"

@@ -1,4 +1,8 @@
-export const calcAllIn = (value: number, percent: number, count: number) => {
+export const calcTradeAllIn = (
+  value: number,
+  percent: number,
+  count: number,
+) => {
   const multiply = 1 + percent / 100;
   const values = [value];
   for (let i = 1; i <= count - 1; i++) {
@@ -8,4 +12,4 @@ export const calcAllIn = (value: number, percent: number, count: number) => {
   return values.map(result => result.toFixed(2));
 };
 
-console.log(calcAllIn(8000, 80, 6));
+console.log(calcTradeAllIn(92.28, 76, 10));

@@ -23,7 +23,7 @@ export const RootLayout = ({ children }: PropsWithChildren) => {
   const { themeMode, inverseThemeMode, toggleThemeMode } = useThemeContext();
   const { path, matchPath } = useRouterContext();
   const { setupBreakpoint } = useBreakpointContext();
-  const { select, eq } = setupBreakpoint();
+  const { select, eq, gt } = setupBreakpoint();
   const iconSrc = useMemo(() => {
     if (themeMode === ThemeModeEnum.Light)
       return "https://api.bewise.app/storage/assets/icon-light.png";
@@ -129,7 +129,7 @@ export const RootLayout = ({ children }: PropsWithChildren) => {
         <Container
           as="footer"
           px={32}
-          py={96}
+          py={select({ mobile: 64, tablet: 82, desktop: 96 })}
           pb={safeArea.bottom ? safeArea.bottom + 96 : undefined}
           bg="$background.50"
         >
@@ -238,11 +238,18 @@ export const RootLayout = ({ children }: PropsWithChildren) => {
                   >
                     {item.description}
                   </Text>
-                  <Box display="flex" gap={18}>
+                  <Divider
+                    hidden={(!item.src && !item.description) || gt("mobile")}
+                  />
+                  <Box
+                    display="flex"
+                    gap={18}
+                    hidden={!item.section && !item.links}
+                  >
                     <Text fontSize={14} hidden={!item.section}>
                       {item.section}
                     </Text>
-                    <Box display="flex" gap={12}>
+                    <Box display="flex" gap={12} hidden={!item.links}>
                       {item.links?.map(({ to, label }, index) => (
                         <Link
                           key={`link-${index}`}
