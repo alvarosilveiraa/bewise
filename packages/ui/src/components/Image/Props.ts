@@ -12,6 +12,8 @@ export type ImageStyleProps = BoxStyle & ImageStyle;
 
 export type ImageProps = ImageStyleProps & {
   id?: string;
+  alt?: string;
   src?: string;
+  priority?: boolean;
   hidden?: boolean;
 };

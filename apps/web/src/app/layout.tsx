@@ -1,7 +1,8 @@
-import type { PropsWithChildren } from "react";
-import type { Metadata } from "next";
+import { PropsWithChildren, use } from "react";
+import { Metadata } from "next";
 import { ThemeModeEnum } from "@bewise/common/enums/ThemeMode";
 import { BreakpointProvider } from "@bewise/ui/providers/Breakpoint";
+import { RouterProvider } from "@bewise/ui/providers/Router";
 import { StorageProvider } from "@bewise/ui/providers/Storage";
 import { ThemeProvider } from "@bewise/ui/providers/Theme";
 import { cookies } from "next/headers";
@@ -24,8 +25,8 @@ const fetchThemeMode = async () => {
   return value as ThemeModeEnum;
 };
 
-export default async function Layout({ children }: PropsWithChildren) {
-  const themeMode = await fetchThemeMode();
+export default function Layout({ children }: PropsWithChildren) {
+  const themeMode = use(fetchThemeMode());
 
   return (
     <html lang="en">
@@ -36,7 +37,9 @@ export default async function Layout({ children }: PropsWithChildren) {
           cookieStorage={cookieStorage}
         >
           <ThemeProvider mode={themeMode}>
-            <BreakpointProvider>{children}</BreakpointProvider>
+            <BreakpointProvider>
+              <RouterProvider>{children}</RouterProvider>
+            </BreakpointProvider>
           </ThemeProvider>
         </StorageProvider>
       </body>

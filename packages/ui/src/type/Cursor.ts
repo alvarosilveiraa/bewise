@@ -1,1 +1,1 @@
-export type Cursor = "inherit" | "pointer" | "not-allowed";
+export type Cursor = "inherit" | "default" | "pointer" | "not-allowed";

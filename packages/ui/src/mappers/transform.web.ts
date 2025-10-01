@@ -1,9 +1,10 @@
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { isObject } from "lodash";
 
 export const transformMapper = (transform?: unknown) => {
   if (!transform || !isObject(transform)) return;
   const result: string[] = [];
-  (transform as Record<string, unknown>[]).forEach(t => {
+  (transform as RecordUnknown[]).forEach(t => {
     if (t.perspective) result.push(`perspective(${t.perspective}cm)`);
     if (t.rotate) result.push(`rotate(${t.rotate})`);
     if (t.rotateX) result.push(`rotateX(${t.rotateX})`);

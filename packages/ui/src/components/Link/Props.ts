@@ -7,6 +7,8 @@ export type LinkStyleProps = BoxStyle & TextStyle;
 
 export type LinkProps = LinkStyleProps & {
   id?: string;
+  ariaLabel?: string;
+  ariaCurrent?: "page" | "step" | "date" | "time" | "location" | boolean;
   to?: string;
   type?: "push" | "replace" | "back";
   hover?: NavigateStyleProps;

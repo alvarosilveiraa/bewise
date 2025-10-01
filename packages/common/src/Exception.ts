@@ -1,4 +1,5 @@
 import { isObject } from "lodash";
+import { RecordUnknown } from "./types/RecordUnknown";
 
 export class Exception {
   public status: number;
@@ -8,7 +9,7 @@ export class Exception {
   constructor(error: unknown, status = 400) {
     this.status = status;
     if (isObject(error)) {
-      const record = error as Record<string, unknown>;
+      const record = error as RecordUnknown;
       this.status = record.status ? Number(record.status) : status;
       this.message = record.message
         ? String(record.message)

@@ -15,6 +15,7 @@ import { BoxStyle } from "../Box/Props";
 
 export type TextStyle = {
   color?: ColorVariable | Color;
+  colorGradient?: (ColorVariable | Color)[];
   fontFamily?: FontFamily;
   fontSize?: FontSize | Size;
   fontStyle?: FontStyle;

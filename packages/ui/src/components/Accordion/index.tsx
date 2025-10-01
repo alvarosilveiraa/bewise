@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { EasingEnum } from "@bewise/ui/enums/Easing";
 import { Box } from "../Box";
 import { Button } from "../Button";
@@ -8,7 +9,7 @@ import { Motion } from "../Motion";
 import { Text } from "../Text";
 import { AccordionProps } from "./Props";
 
-export const Accordion = <I extends object = Record<string, unknown>>({
+export const Accordion = <I extends RecordUnknown = RecordUnknown>({
   data = [],
   Header,
   Title,
@@ -73,6 +74,9 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               </Header>
             ) : (
               <Button
+                id={`accordion-${index}`}
+                ariaExpanded={expanded}
+                ariaControls={`panel-${index}`}
                 variant={expanded ? "solid" : "outline"}
                 size="xl"
                 justify="space-between"
@@ -89,6 +93,8 @@ export const Accordion = <I extends object = Record<string, unknown>>({
               </Button>
             )}
             <Motion
+              id={`panel-${index}`}
+              ariaLabelledBy={`accordion-${index}`}
               overflow={false}
               opacity={0}
               btw={0}

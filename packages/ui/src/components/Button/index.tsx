@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { PlatformEnum } from "@bewise/ui/enums/Platform";
 import { Color } from "@bewise/ui/type/Color";
 import { ColorVariable } from "@bewise/ui/type/ColorVariable";
 import { FontWeight } from "@bewise/ui/type/FontWeight";
@@ -79,14 +80,14 @@ export const Button = ({
         {
           solid: "$divider",
           flat: "transparent",
-          outline: "$divider",
+          outline: `$${schema}`,
           ghost: "transparent",
         }[variant] as Color | ColorVariable
       }
       bs="solid"
       radius={{ xxs: 1, xs: 2, sm: 3, md: 4, lg: 5, xl: 6, xxl: 7 }[size]}
       opacity={props.disabled ? "$disabled" : undefined}
-      transition={{ duration: 200 }}
+      transition={{ duration: 200, platforms: [PlatformEnum.Web] }}
       {...props}
       hover={{
         opacity: "$hover",

@@ -1,14 +1,18 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
+import { useHover } from "@bewise/ui/hooks/useHover";
 import { useLayout } from "@bewise/ui/hooks/useLayout";
 import { useStyle } from "@bewise/ui/hooks/useStyle";
-import { useTransition } from "@bewise/ui/hooks/useTransition";
 import { boxStyleMapper } from "@bewise/ui/mappers/boxStyle";
+import { isFunction } from "lodash";
 import { BoxProps } from "./Props";
 
 export const _Box = ({
   id,
+  as,
+  ariaLabelledBy,
+  hover,
   onPress,
   onLayout,
   onLayoutChange,
@@ -17,18 +21,84 @@ export const _Box = ({
   ...props
 }: BoxProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const style = useStyle(props, boxStyleMapper);
-  const transition = useTransition(style);
+  const { hovering, hoverProps, onMouseOver, onMouseOut } = useHover(
+    props,
+    hover,
+    disabled,
+  );
+  const style = useStyle(hoverProps, boxStyleMapper);
   useLayout({ ref, onLayout, onLayoutChange });
 
-  return (
-    <div
-      ref={ref}
-      id={id}
-      style={transition}
-      onClick={disabled ? undefined : onPress}
-    >
-      {children}
-    </div>
-  );
+  const renderChildren = useCallback(() => {
+    if (isFunction(children)) return children({ hovering });
+    return children;
+  }, [children, hovering]);
+
+  return {
+    div: (
+      <div
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={style}
+        onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {renderChildren()}
+      </div>
+    ),
+    header: (
+      <header
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={style}
+        onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {renderChildren()}
+      </header>
+    ),
+    nav: (
+      <nav
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={style}
+        onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {renderChildren()}
+      </nav>
+    ),
+    section: (
+      <section
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={style}
+        onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {renderChildren()}
+      </section>
+    ),
+    footer: (
+      <footer
+        ref={ref}
+        id={id}
+        aria-labelledby={ariaLabelledBy}
+        style={style}
+        onClick={disabled ? undefined : onPress}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {renderChildren()}
+      </footer>
+    ),
+  }[as!];
 };

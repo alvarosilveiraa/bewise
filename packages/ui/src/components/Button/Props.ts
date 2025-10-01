@@ -8,6 +8,9 @@ export type ButtonStyleProps = BoxStyle & TextStyle;
 
 export type ButtonProps = ButtonStyleProps & {
   id?: string;
+  ariaLabel?: string;
+  ariaExpanded?: boolean;
+  ariaControls?: string;
   schema?: keyof ThemeColorsConfig;
   variant?: "solid" | "flat" | "outline" | "ghost";
   size?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
@@ -18,6 +21,7 @@ export type ButtonProps = ButtonStyleProps & {
   endContent?: ReactNode;
   endIcon?: IconProps;
   icon?: IconProps;
+  hovering?: boolean;
   disabled?: boolean;
   hidden?: boolean;
   children?: ReactNode;

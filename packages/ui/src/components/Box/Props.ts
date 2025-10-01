@@ -103,11 +103,14 @@ export type BoxStyleProps = BoxStyle;
 
 export type BoxProps = BoxStyleProps & {
   id?: string;
+  as?: "div" | "header" | "nav" | "section" | "footer";
+  ariaLabelledBy?: string;
   hover?: BoxStyleProps;
   onPress?: () => void;
   onLayout?: (layout: Layout) => void;
   onLayoutChange?: (layout: Layout) => void;
+  hovering?: boolean;
   disabled?: boolean;
   hidden?: boolean;
-  children?: ReactNode;
+  children?: ReactNode | ((props: { hovering?: boolean }) => ReactNode);
 };

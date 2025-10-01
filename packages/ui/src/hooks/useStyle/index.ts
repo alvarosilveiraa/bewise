@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback } from "react";
+import { RecordUnknown } from "@bewise/common/types/RecordUnknown";
 import { clearNullish } from "@bewise/ui/helpers/clearNullish";
+import { hasTransitionPlatform } from "@bewise/ui/helpers/hasTransitionPlatform";
 import { styleMapper } from "@bewise/ui/mappers/style";
 import { useThemeContext } from "@bewise/ui/providers/Theme/useContext";
 import { Color } from "@bewise/ui/type/Color";
@@ -14,8 +16,9 @@ import { Size } from "@bewise/ui/type/Size";
 import { Style } from "@bewise/ui/type/Style";
 import { ThemeColorsConfig } from "@bewise/ui/type/ThemeColorsConfig";
 import { isNull, isString } from "lodash";
+import { useTransition } from "../useTransition";
 
-export const useStyle = <S extends object = Record<string, unknown>>(
+export const useStyle = <S extends RecordUnknown = RecordUnknown>(
   style?: Style,
   mapper = styleMapper,
 ) => {
@@ -137,7 +140,7 @@ export const useStyle = <S extends object = Record<string, unknown>>(
     if (overflow === false) return "hidden";
   }, []);
 
-  return mapper<S>(
+  const mappedStyle = mapper<S>(
     clearNullish({
       ...style,
       bbc: colorMapper(style?.bbc),
@@ -147,6 +150,7 @@ export const useStyle = <S extends object = Record<string, unknown>>(
       brc: colorMapper(style?.brc),
       btc: colorMapper(style?.btc),
       color: colorMapper(style?.color),
+      colorGradient: style?.colorGradient?.map(colorMapper),
       fill: colorMapper(style?.fill),
       fontFamily: fontFamilyMapper(style?.fontFamily),
       fontSize: fontSizeMapper(style?.fontSize),
@@ -159,4 +163,8 @@ export const useStyle = <S extends object = Record<string, unknown>>(
       size: sizeMapper(style?.size),
     }),
   );
+
+  if (style?.transition && hasTransitionPlatform(style.transition))
+    return useTransition(mappedStyle);
+  return mappedStyle;
 };
